@@ -1,26 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mehmed Maljoki — Full Stack Developer</title>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Full Stack Software Developer based in Vienna, Austria. 3+ years enterprise experience at Porsche Informatik & Volkswagen Group." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <style>
+    /* ═══════════════════════════════════════
+       RESET & CSS TOKENS
+    ═══════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #0d0d0f;
-      --bg2:      #141416;
-      --bg3:      #1c1c1f;
-      --border:   #2a2a2f;
-      --orange:   #d97757;
-      --orange2:  #e8896b;
-      --muted:    #6b6b7a;
-      --text:     #e8e8ed;
-      --text2:    #a8a8b8;
-      --green:    #4ade80;
-      --blue:     #60a5fa;
-      --purple:   #a78bfa;
+      --bg:        #0c0c0e;
+      --bg2:       #131316;
+      --bg3:       #1a1a1e;
+      --border:    #252529;
+      --orange:    #d97757;
+      --orange2:   #e8896b;
+      --orange3:   #f0a080;
+      --muted:     #636372;
+      --text:      #eaeaf0;
+      --text2:     #a3a3b8;
+      --green:     #4ade80;
+      --blue:      #60a5fa;
+      --purple:    #a78bfa;
+      --nav-bg:    rgba(12,12,14,0.82);
+      --shadow-lg: 0 32px 80px rgba(0,0,0,0.65);
+      --shadow-sm: 0 4px 20px rgba(0,0,0,0.3);
+      --card-glow: 0 8px 32px rgba(217,119,87,0.1);
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    [data-theme="light"] {
+      --bg:        #f5f5f8;
+      --bg2:       #ffffff;
+      --bg3:       #ededf2;
+      --border:    #dedee8;
+      --orange:    #bf5c38;
+      --orange2:   #d97757;
+      --orange3:   #e8896b;
+      --muted:     #8f8fa0;
+      --text:      #101018;
+      --text2:     #52525f;
+      --green:     #15803d;
+      --blue:      #1d4ed8;
+      --purple:    #6d28d9;
+      --nav-bg:    rgba(245,245,248,0.88);
+      --shadow-lg: 0 32px 80px rgba(0,0,0,0.12);
+      --shadow-sm: 0 4px 20px rgba(0,0,0,0.08);
+      --card-glow: 0 8px 32px rgba(191,92,56,0.1);
     }
 
     html { scroll-behavior: smooth; }
@@ -32,53 +64,156 @@
       font-size: 15px;
       line-height: 1.6;
       overflow-x: hidden;
+      transition: background var(--transition), color var(--transition);
     }
 
-    /* ── SCROLLBAR ── */
-    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
-    /* ── NAV ── */
+    /* ═══════════════════════════════════════
+       SCROLL PROGRESS BAR
+    ═══════════════════════════════════════ */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; z-index: 200;
+      height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--orange3), var(--purple));
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+
+    /* ═══════════════════════════════════════
+       NAV
+    ═══════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(13,13,15,0.85);
-      backdrop-filter: blur(12px);
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2rem;
-      height: 56px;
+      height: 62px;
+      transition: background var(--transition), border-color var(--transition);
     }
+
+    .nav-left { display: flex; align-items: center; gap: 2.5rem; }
     .nav-logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--orange);
-      display: flex; align-items: center; gap: 0.5rem;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 0.3rem;
+      letter-spacing: -0.01em;
     }
-    .nav-logo span { color: var(--muted); }
-    .nav-links { display: flex; gap: 2rem; }
+    .nav-logo .dim { color: var(--muted); }
+
+    .nav-links { display: flex; gap: 1.75rem; }
     .nav-links a {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--text2);
       text-decoration: none;
       transition: color 0.2s;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
-    .nav-links a:hover { color: var(--orange); }
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--orange); }
+
+    .nav-right { display: flex; align-items: center; gap: 0.65rem; }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.02em;
+    }
+    .lang-btn {
+      padding: 0.32rem 0.58rem;
+      cursor: pointer;
+      color: var(--muted);
+      border: none;
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+    }
+    .lang-btn.active { background: var(--orange); color: #fff; }
+    .lang-btn:hover:not(.active) { color: var(--text); }
+
+    /* Theme Toggle */
+    .theme-btn {
+      width: 36px; height: 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      color: var(--text2);
+    }
+    .theme-btn:hover { border-color: var(--orange); transform: scale(1.05); }
+
     .nav-cta {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--orange);
       border: 1px solid var(--orange);
-      padding: 0.35rem 0.9rem;
-      border-radius: 4px;
+      padding: 0.38rem 0.9rem;
+      border-radius: 6px;
       text-decoration: none;
-      transition: background 0.2s, color 0.2s;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+      white-space: nowrap;
     }
-    .nav-cta:hover { background: var(--orange); color: #000; }
+    .nav-cta:hover { background: var(--orange); color: #fff; transform: translateY(-1px); }
 
-    /* ── HERO ── */
+    /* Mobile Menu Toggle */
+    .hamburger {
+      display: none;
+      flex-direction: column; gap: 4px;
+      cursor: pointer;
+      width: 28px; padding: 4px;
+    }
+    .hamburger span {
+      display: block; height: 2px;
+      background: var(--text2);
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+
+    /* Mobile Nav Drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 62px; left: 0; right: 0;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      z-index: 99;
+      flex-direction: column; gap: 1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--text2);
+      text-decoration: none;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
     .hero {
       min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
@@ -86,40 +221,44 @@
       position: relative;
       overflow: hidden;
     }
+
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(217,119,87,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(217,119,87,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+        linear-gradient(rgba(217,119,87,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(217,119,87,0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 100%);
     }
+
     .hero-glow {
       position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(217,119,87,0.12) 0%, transparent 70%);
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(217,119,87,0.09) 0%, transparent 65%);
       top: 50%; left: 50%; transform: translate(-50%, -50%);
       pointer-events: none;
     }
 
     .hero-inner {
-      max-width: 900px; width: 100%;
+      max-width: 940px; width: 100%;
       position: relative; z-index: 1;
     }
 
-    /* Terminal window */
+    /* Terminal */
     .terminal {
       background: var(--bg2);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 13px;
       overflow: hidden;
       margin-bottom: 3rem;
-      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+      box-shadow: var(--shadow-lg);
+      transition: background var(--transition), border-color var(--transition);
     }
     .terminal-bar {
       background: var(--bg3);
       border-bottom: 1px solid var(--border);
-      padding: 0.7rem 1rem;
+      padding: 0.75rem 1rem;
       display: flex; align-items: center; gap: 0.5rem;
     }
     .dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -127,498 +266,579 @@
     .dot-y { background: #febc2e; }
     .dot-g { background: #28c840; }
     .terminal-title {
-      margin-left: auto; margin-right: auto;
+      margin: 0 auto;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
+      font-size: 0.7rem; color: var(--muted);
     }
-
     .terminal-body {
-      padding: 1.5rem;
+      padding: 1.5rem 1.75rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.83rem;
-      line-height: 1.8;
+      font-size: 0.8rem;
+      line-height: 1.9;
     }
-    .prompt { color: var(--orange); }
-    .prompt-path { color: var(--blue); }
-    .prompt-branch { color: var(--purple); }
-    .cmd { color: var(--text); }
-    .output { color: var(--text2); padding-left: 1rem; }
-    .output-hl { color: var(--green); }
-    .output-name { color: var(--orange2); font-weight: 600; }
+    .t-prompt { color: var(--orange); }
+    .t-path   { color: var(--blue); }
+    .t-branch { color: var(--purple); }
+    .t-cmd    { color: var(--text); }
+    .t-out    { color: var(--text2); padding-left: 1rem; }
+    .t-hl     { color: var(--green); }
+    .t-name   { color: var(--orange2); font-weight: 600; }
+    .t-dim    { color: var(--muted); }
     .cursor {
-      display: inline-block;
-      width: 8px; height: 1em;
-      background: var(--orange);
-      vertical-align: middle;
+      display: inline-block; width: 8px; height: 1.1em;
+      background: var(--orange); vertical-align: text-bottom;
       animation: blink 1.1s steps(2) infinite;
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
-    /* Hero text */
-    .hero-headline {
-      font-size: clamp(2.8rem, 6vw, 4.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1.2rem;
-    }
-    .hero-headline em {
-      font-style: normal;
-      color: var(--orange);
-    }
-    .hero-sub {
-      font-size: 1.1rem;
-      color: var(--text2);
-      max-width: 580px;
-      margin-bottom: 2rem;
-      line-height: 1.7;
-    }
-    .hero-badges {
-      display: flex; flex-wrap: wrap; gap: 0.6rem;
-      margin-bottom: 2.5rem;
-    }
-    .badge {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      padding: 0.3rem 0.75rem;
-      border-radius: 4px;
-      border: 1px solid var(--border);
-      color: var(--text2);
-      background: var(--bg3);
-    }
-    .badge.hi { border-color: rgba(217,119,87,0.4); color: var(--orange2); background: rgba(217,119,87,0.07); }
-
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--orange);
-      color: #000;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .btn-primary:hover { background: var(--orange2); transform: translateY(-1px); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      border: 1px solid var(--border);
-      color: var(--text2);
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: border-color 0.2s, color 0.2s, transform 0.1s;
-    }
-    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-1px); }
-
-    /* ── SECTION COMMON ── */
-    section { padding: 5rem 2rem; }
-    .container { max-width: 960px; margin: 0 auto; }
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      color: var(--orange);
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .section-label::before { content: '//'; color: var(--muted); }
-    .section-title {
-      font-size: clamp(1.6rem, 4vw, 2.4rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1rem;
-    }
-    .section-desc { color: var(--text2); max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
-    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* ── ABOUT / STATS ── */
-    #about { background: var(--bg); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    .stat-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: border-color 0.2s;
-    }
-    .stat-card:hover { border-color: rgba(217,119,87,0.4); }
-    .stat-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: var(--orange);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-    .stat-label { color: var(--text2); font-size: 0.85rem; }
-
-    .about-text { color: var(--text2); line-height: 1.8; font-size: 1rem; }
-    .about-text strong { color: var(--text); }
-
-    /* ── SKILLS ── */
-    #skills { background: var(--bg2); }
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-    }
-    .skill-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.4rem;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .skill-card:hover { border-color: rgba(217,119,87,0.35); transform: translateY(-2px); }
-    .skill-card-head {
-      display: flex; align-items: center; gap: 0.6rem;
-      margin-bottom: 1rem;
-    }
-    .skill-icon {
-      font-size: 1.3rem;
-      width: 38px; height: 38px;
-      background: var(--bg3);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      border: 1px solid var(--border);
-    }
-    .skill-card-name { font-weight: 600; font-size: 0.9rem; }
-    .skill-card-sub { font-size: 0.75rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .stag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 3px;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text2);
-    }
-
-    /* ── EXPERIENCE ── */
-    #experience { background: var(--bg); }
-    .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
-    .exp-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 2rem;
-      position: relative;
-      transition: border-color 0.2s;
-    }
-    .exp-card:hover { border-color: rgba(217,119,87,0.35); }
-    .exp-card::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 3px;
-      background: linear-gradient(180deg, var(--orange), transparent);
-      border-radius: 10px 0 0 10px;
-    }
-    .exp-top {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 0.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .exp-role { font-weight: 700; font-size: 1.05rem; }
-    .exp-period {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--orange);
-      background: rgba(217,119,87,0.1);
-      border: 1px solid rgba(217,119,87,0.2);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-    }
-    .exp-company { color: var(--orange2); font-size: 0.9rem; margin-bottom: 0.3rem; }
-    .exp-project { color: var(--muted); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem; }
-    .exp-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
-    .tech-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      padding: 0.2rem 0.55rem;
-      background: rgba(96,165,250,0.1);
-      border: 1px solid rgba(96,165,250,0.2);
-      color: var(--blue);
-      border-radius: 3px;
-    }
-    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .exp-bullets li {
-      color: var(--text2);
-      font-size: 0.88rem;
-      padding-left: 1.2rem;
-      position: relative;
-      line-height: 1.6;
-    }
-    .exp-bullets li::before {
-      content: '▸';
-      position: absolute; left: 0;
-      color: var(--orange);
-    }
-
-    /* ── SERVICES ── */
-    #services { background: var(--bg2); }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-    .service-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.75rem;
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .service-card:hover { border-color: rgba(217,119,87,0.4); transform: translateY(-3px); }
-    .service-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: var(--orange);
-      margin-bottom: 1rem;
-    }
-    .service-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
-    .service-desc { color: var(--text2); font-size: 0.85rem; line-height: 1.7; }
-
-    /* ── EDUCATION ── */
-    #education { background: var(--bg); }
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-    .edu-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: border-color 0.2s;
-    }
-    .edu-card:hover { border-color: rgba(217,119,87,0.35); }
-    .edu-period {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--orange);
-      margin-bottom: 0.5rem;
-    }
-    .edu-degree { font-weight: 700; margin-bottom: 0.25rem; }
-    .edu-school { color: var(--text2); font-size: 0.85rem; }
-
-    /* ── CONTACT ── */
-    #contact { background: var(--bg2); }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
-    .contact-item {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1rem 1.2rem;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, transform 0.1s;
-    }
-    .contact-item:hover { border-color: rgba(217,119,87,0.4); transform: translateX(4px); }
-    .contact-icon { font-size: 1.2rem; width: 36px; text-align: center; }
-    .contact-label { font-size: 0.72rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
-    .contact-val { font-size: 0.9rem; color: var(--text); font-weight: 500; }
-
-    .contact-cta {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 2rem;
-      display: flex; flex-direction: column;
-      justify-content: center;
-    }
-    .contact-cta h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
-    .contact-cta p { color: var(--text2); line-height: 1.7; margin-bottom: 1.5rem; font-size: 0.9rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 2rem;
-      text-align: center;
-    }
-    .footer-inner {
-      max-width: 960px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--orange);
-    }
-    .footer-text { font-size: 0.78rem; color: var(--muted); }
-    .footer-links { display: flex; gap: 1.5rem; }
-    .footer-links a {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--orange); }
-
-    /* ── AVAIL BANNER ── */
+    /* Availability badge */
     .avail-banner {
+      display: inline-flex; align-items: center; gap: 0.65rem;
       background: rgba(74,222,128,0.07);
-      border: 1px solid rgba(74,222,128,0.2);
-      border-radius: 6px;
-      padding: 0.6rem 1rem;
-      display: inline-flex; align-items: center; gap: 0.6rem;
+      border: 1px solid rgba(74,222,128,0.22);
+      border-radius: 100px;
+      padding: 0.42rem 1.1rem;
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--green);
+      font-size: 0.72rem; color: var(--green);
       margin-bottom: 1.5rem;
     }
     .avail-dot {
       width: 7px; height: 7px;
-      background: var(--green);
-      border-radius: 50%;
+      background: var(--green); border-radius: 50%;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
-      0%,100%{ box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
-      50%{ box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+      0%,100%{ box-shadow: 0 0 0 0 rgba(74,222,128,0.45); }
+      60%{ box-shadow: 0 0 0 7px rgba(74,222,128,0); }
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 700px) {
-      nav { padding: 0 1rem; }
-      .nav-links { display: none; }
-      .about-grid,
-      .edu-grid,
-      .contact-grid { grid-template-columns: 1fr; }
-      .hero-headline { font-size: 2.2rem; }
-      section { padding: 3.5rem 1.2rem; }
+    .hero-headline {
+      font-size: clamp(2.5rem, 6vw, 4.6rem);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.06;
+      margin-bottom: 1.3rem;
     }
+    .hero-headline em { font-style: normal; color: var(--orange); }
 
-    /* fade-in animation */
+    .hero-sub {
+      font-size: 1.05rem; color: var(--text2);
+      max-width: 620px; margin-bottom: 2rem; line-height: 1.8;
+    }
+    .hero-sub strong { color: var(--text); }
+
+    .hero-badges {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      margin-bottom: 2.5rem;
+    }
+    .badge {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      padding: 0.3rem 0.75rem; border-radius: 5px;
+      border: 1px solid var(--border);
+      color: var(--text2); background: var(--bg3);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+      cursor: default;
+    }
+    .badge:hover { border-color: rgba(217,119,87,0.5); color: var(--orange); transform: translateY(-1px); }
+    .badge.hi { border-color: rgba(217,119,87,0.32); color: var(--orange2); background: rgba(217,119,87,0.07); }
+
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--orange); color: #fff;
+      padding: 0.8rem 1.65rem; border-radius: 8px;
+      text-decoration: none; font-weight: 700; font-size: 0.88rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(217,119,87,0.35);
+      border: none; cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .btn-primary:hover { background: var(--orange2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(217,119,87,0.45); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border); color: var(--text2);
+      padding: 0.8rem 1.65rem; border-radius: 8px;
+      text-decoration: none; font-size: 0.88rem;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s, background 0.2s;
+      background: transparent; cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .btn-secondary:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-2px); background: rgba(217,119,87,0.05); }
+
+    .btn-download {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid rgba(74,222,128,0.45); color: var(--green);
+      padding: 0.8rem 1.65rem; border-radius: 8px;
+      text-decoration: none; font-size: 0.88rem;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      background: transparent; cursor: pointer; font-family: 'Inter', sans-serif;
+    }
+    .btn-download:hover { background: rgba(74,222,128,0.08); transform: translateY(-2px); border-color: var(--green); }
+
+    /* ═══════════════════════════════════════
+       SECTIONS BASE
+    ═══════════════════════════════════════ */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1000px; margin: 0 auto; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem; letter-spacing: 0.18em;
+      color: var(--orange); text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      display: flex; align-items: center; gap: 0.45rem;
+    }
+    .section-label::before { content: '//'; color: var(--muted); }
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.028em;
+      margin-bottom: 0.9rem;
+    }
+    .section-desc { color: var(--text2); max-width: 560px; line-height: 1.8; margin-bottom: 3rem; }
+    hr.divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ═══════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════ */
+    #about { background: var(--bg); }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.6rem 1.25rem;
+      text-align: center;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--orange), var(--orange3));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .stat-card:hover { border-color: rgba(217,119,87,0.38); transform: translateY(-4px); box-shadow: var(--card-glow); }
+    .stat-card:hover::after { transform: scaleX(1); }
+    .stat-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--orange); line-height: 1; margin-bottom: 0.4rem;
+    }
+    .stat-label { color: var(--text2); font-size: 0.78rem; line-height: 1.5; }
+
+    .about-text { color: var(--text2); line-height: 1.9; font-size: 0.97rem; }
+    .about-text strong { color: var(--text); }
+
+    /* ═══════════════════════════════════════
+       SKILLS
+    ═══════════════════════════════════════ */
+    #skills { background: var(--bg2); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.1rem;
+    }
+    .skill-card {
+      background: var(--bg);
+      border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:hover { border-color: rgba(217,119,87,0.38); transform: translateY(-4px); box-shadow: var(--card-glow); }
+    .skill-card-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.1rem; }
+    .skill-icon {
+      font-size: 1.3rem; width: 42px; height: 42px;
+      background: var(--bg3); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border); flex-shrink: 0;
+    }
+    .skill-card-name { font-weight: 700; font-size: 0.92rem; }
+    .skill-card-sub { font-size: 0.7rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; margin-top: 0.15rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .stag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+      padding: 0.22rem 0.55rem; border-radius: 4px;
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--text2);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .stag:hover { border-color: var(--orange); color: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       EXPERIENCE
+    ═══════════════════════════════════════ */
+    #experience { background: var(--bg); }
+
+    .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .exp-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2rem; position: relative;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      overflow: hidden;
+    }
+    .exp-card:hover { border-color: rgba(217,119,87,0.42); box-shadow: var(--card-glow); }
+    .exp-card::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+      background: linear-gradient(180deg, var(--orange) 0%, var(--orange2) 50%, transparent 100%);
+      border-radius: 14px 0 0 14px;
+    }
+    .exp-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 0.6rem; margin-bottom: 0.5rem;
+    }
+    .exp-role { font-weight: 800; font-size: 1.08rem; }
+    .exp-period {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      color: var(--orange); background: rgba(217,119,87,0.1);
+      border: 1px solid rgba(217,119,87,0.22);
+      padding: 0.28rem 0.7rem; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .exp-company { color: var(--orange2); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.28rem; }
+    .exp-project { color: var(--muted); font-size: 0.77rem; font-family: 'JetBrains Mono', monospace; margin-bottom: 1rem; }
+    .exp-tech { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-bottom: 1.3rem; }
+    .tech-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+      padding: 0.22rem 0.55rem;
+      background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.22);
+      color: var(--blue); border-radius: 4px;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .exp-bullets li {
+      color: var(--text2); font-size: 0.87rem;
+      padding-left: 1.3rem; position: relative; line-height: 1.7;
+    }
+    .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       SERVICES
+    ═══════════════════════════════════════ */
+    #services { background: var(--bg2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      gap: 1.1rem;
+    }
+    .service-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.8rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { border-color: rgba(217,119,87,0.42); transform: translateY(-5px); box-shadow: var(--card-glow); }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--orange), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-num {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.67rem;
+      color: var(--orange); margin-bottom: 1rem; letter-spacing: 0.1em;
+    }
+    .service-icon { font-size: 1.9rem; margin-bottom: 0.8rem; }
+    .service-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.6rem; }
+    .service-desc { color: var(--text2); font-size: 0.84rem; line-height: 1.78; }
+
+    /* ═══════════════════════════════════════
+       EDUCATION
+    ═══════════════════════════════════════ */
+    #education { background: var(--bg); }
+
+    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    .edu-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.75rem;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .edu-card:hover { border-color: rgba(217,119,87,0.38); transform: translateY(-3px); box-shadow: var(--card-glow); }
+    .edu-period { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--orange); margin-bottom: 0.75rem; }
+    .edu-icon { font-size: 1.6rem; margin-bottom: 0.75rem; }
+    .edu-degree { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.3rem; }
+    .edu-school { color: var(--text2); font-size: 0.84rem; }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    #contact { background: var(--bg2); }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .contact-info { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 11px; padding: 1rem 1.3rem;
+      text-decoration: none; color: inherit;
+      transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .contact-item:hover { border-color: rgba(217,119,87,0.42); transform: translateX(5px); box-shadow: var(--card-glow); }
+    .contact-icon { font-size: 1.2rem; width: 34px; text-align: center; flex-shrink: 0; }
+    .contact-label { font-size: 0.67rem; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+    .contact-val { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+
+    .contact-cta {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 2.25rem;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .contact-cta::before {
+      content: '';
+      position: absolute; top: -50%; right: -50%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(217,119,87,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-cta h3 { font-size: 1.45rem; font-weight: 800; margin-bottom: 0.8rem; }
+    .contact-cta p { color: var(--text2); line-height: 1.78; margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    footer {
+      background: var(--bg); border-top: 1px solid var(--border);
+      padding: 1.75rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1000px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--orange); }
+    .footer-text { font-size: 0.76rem; color: var(--muted); text-align: center; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ═══════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════ */
     .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
     .fade-in.visible { opacity: 1; transform: none; }
+
+    /* ═══════════════════════════════════════
+       PRINT STYLES (CV Download)
+    ═══════════════════════════════════════ */
+    @media print {
+      @page { margin: 1.5cm 2cm; }
+      * { transition: none !important; animation: none !important; }
+      body { background: white !important; color: #111 !important; font-size: 11px !important; }
+      #progress-bar, nav, footer, .hero-grid, .hero-glow, .cursor,
+      .avail-dot, .hero-actions, .hero-badges, .terminal,
+      hr.divider, .avail-banner { display: none !important; }
+      .hero { min-height: auto !important; padding: 0 !important; margin-bottom: 1.5rem; }
+      .hero-headline { font-size: 2rem !important; margin-bottom: 0.5rem; }
+      .hero-sub { font-size: 0.9rem !important; color: #444 !important; margin-bottom: 0; }
+      section { padding: 1.2rem 0 !important; background: white !important; }
+      .container { max-width: 100% !important; }
+      .section-title { font-size: 1.2rem !important; color: #111 !important; margin-bottom: 0.5rem; }
+      .section-label { color: #bf5c38 !important; margin-bottom: 0.3rem; }
+      .section-desc { color: #444 !important; margin-bottom: 1rem; font-size: 0.85rem; }
+      .stats-row { grid-template-columns: repeat(4, 1fr) !important; gap: 0.5rem !important; margin-bottom: 1rem !important; }
+      .stat-card { padding: 0.75rem !important; background: #f8f8f8 !important; border: 1px solid #ddd !important; }
+      .stat-num { font-size: 1.6rem !important; color: #bf5c38 !important; }
+      .stat-label { font-size: 0.7rem !important; color: #666 !important; }
+      .about-text { color: #333 !important; font-size: 0.88rem !important; }
+      .skills-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem !important; }
+      .skill-card { background: #f8f8f8 !important; border: 1px solid #ddd !important; padding: 0.75rem !important; }
+      .skill-card-name { color: #111 !important; font-size: 0.8rem !important; }
+      .stag { background: #eee !important; border: 1px solid #ccc !important; color: #333 !important; font-size: 0.6rem !important; }
+      .exp-card { background: #f8f8f8 !important; border: 1px solid #ddd !important; padding: 1rem !important; }
+      .exp-card::before { background: #bf5c38 !important; }
+      .exp-role { color: #111 !important; }
+      .exp-company { color: #bf5c38 !important; }
+      .exp-period { background: #f0e0d8 !important; border: 1px solid #d0a090 !important; color: #bf5c38 !important; font-size: 0.65rem !important; }
+      .exp-bullets li { color: #444 !important; font-size: 0.8rem !important; }
+      .exp-bullets li::before { color: #bf5c38 !important; }
+      .tech-tag { background: #e8eef8 !important; border: 1px solid #b8cce8 !important; color: #1d4ed8 !important; font-size: 0.6rem !important; }
+      .services-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 0.5rem !important; }
+      .service-card { background: #f8f8f8 !important; border: 1px solid #ddd !important; padding: 0.75rem !important; }
+      .service-card::before { display: none !important; }
+      .service-title { font-size: 0.85rem !important; }
+      .service-desc { font-size: 0.78rem !important; color: #444 !important; }
+      .service-icon { font-size: 1.2rem !important; margin-bottom: 0.4rem !important; }
+      .edu-grid { grid-template-columns: 1fr 1fr !important; gap: 0.5rem !important; }
+      .edu-card { background: #f8f8f8 !important; border: 1px solid #ddd !important; padding: 0.75rem !important; }
+      .edu-degree { font-size: 0.85rem !important; }
+      .edu-school { font-size: 0.78rem !important; color: #444 !important; }
+      #contact { background: white !important; }
+      .contact-grid { grid-template-columns: 1fr !important; gap: 0.5rem !important; }
+      .contact-cta { display: none !important; }
+      .contact-item { background: #f8f8f8 !important; border: 1px solid #ddd !important; padding: 0.6rem 1rem !important; }
+      .contact-val { font-size: 0.82rem !important; }
+      .contact-label { font-size: 0.62rem !important; }
+      .fade-in { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links, .lang-switcher { display: none; }
+      .hamburger { display: flex; }
+      .edu-grid, .contact-grid { grid-template-columns: 1fr; }
+      section { padding: 4rem 1.25rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      .hero { padding: 5rem 1.25rem 3rem; }
+      .hero-headline { font-size: 2.1rem; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary, .btn-download { justify-content: center; }
+    }
   </style>
 </head>
 <body>
 
+<!-- PROGRESS BAR -->
+<div id="progress-bar"></div>
+
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">
-    <span>~</span> mehmed.dev <span>$</span>
+<nav id="navbar">
+  <div class="nav-left">
+    <a href="#" class="nav-logo">
+      <span class="dim">~</span> mehmed.dev <span class="dim">$</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about"      data-i18n="nav_about">about</a>
+      <a href="#skills"     data-i18n="nav_skills">skills</a>
+      <a href="#experience" data-i18n="nav_exp">experience</a>
+      <a href="#services"   data-i18n="nav_services">services</a>
+      <a href="#contact"    data-i18n="nav_contact">contact</a>
+    </div>
   </div>
-  <div class="nav-links">
-    <a href="#about">about</a>
-    <a href="#skills">skills</a>
-    <a href="#experience">experience</a>
-    <a href="#services">services</a>
-    <a href="#contact">contact</a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" onclick="setLang('bs')">BS</button>
+      <button class="lang-btn" onclick="setLang('sr')">SR</button>
+    </div>
+    <button class="theme-btn" id="themeToggle" title="Toggle theme">☾</button>
+    <a href="mailto:maljoki.mehmed@gmail.com" class="nav-cta" data-i18n="nav_hire">hire me →</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
-  <a class="nav-cta" href="mailto:maljoki.mehmed@gmail.com">hire me →</a>
 </nav>
 
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about"      onclick="closeMobile()" data-i18n="nav_about">about</a>
+  <a href="#skills"     onclick="closeMobile()" data-i18n="nav_skills">skills</a>
+  <a href="#experience" onclick="closeMobile()" data-i18n="nav_exp">experience</a>
+  <a href="#services"   onclick="closeMobile()" data-i18n="nav_services">services</a>
+  <a href="#contact"    onclick="closeMobile()" data-i18n="nav_contact">contact</a>
+</div>
 
-<!-- HERO -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
-
   <div class="hero-inner">
 
-    <!-- Terminal window -->
+    <!-- Terminal -->
     <div class="terminal fade-in">
       <div class="terminal-bar">
         <div class="dot dot-r"></div>
         <div class="dot dot-y"></div>
         <div class="dot dot-g"></div>
-        <div class="terminal-title">mehmed@portfolio — bash</div>
+        <div class="terminal-title">mehmed@portfolio — bash — 120×38</div>
       </div>
-      <div class="terminal-body">
+      <div class="terminal-body" id="terminal-body">
         <div>
-          <span class="prompt">mehmed</span><span class="muted" style="color:var(--muted)">@</span><span class="prompt-path">portfolio</span>
-          <span style="color:var(--muted)"> on </span><span class="prompt-branch">⎇ main</span>
-          <span class="prompt"> $ </span><span class="cmd">whoami</span>
+          <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
+          <span class="t-dim"> on </span><span class="t-branch">⎇ main</span>
+          <span class="t-prompt"> $ </span><span class="t-cmd">whoami</span>
         </div>
-        <div class="output">
-          <span class="output-name">Maljoki Mehmed</span> — Full Stack Software Developer
+        <div class="t-out">
+          <span class="t-name">Maljoki Mehmed</span> — Full Stack Software Developer
         </div>
-        <div class="output">📍 Vienna / Baden, Austria &nbsp;·&nbsp; Available for Freelance Projects</div>
+        <div class="t-out">📍 Vienna, Austria &nbsp;·&nbsp; <span style="color:var(--green)">Available for Freelance</span></div>
         <br/>
         <div>
-          <span class="prompt">mehmed</span><span style="color:var(--muted)">@</span><span class="prompt-path">portfolio</span><span class="prompt"> $ </span>
-          <span class="cmd">cat skills.json | jq '.core[]'</span>
+          <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
+          <span class="t-prompt"> $ </span><span class="t-cmd">cat stack.json | jq '.core[]'</span>
         </div>
-        <div class="output">
-          <span class="output-hl">"Java Spring Boot"</span> <span class="output-hl">"Angular"</span> <span class="output-hl">"React"</span>
+        <div class="t-out">
+          <span class="t-hl">"Java Spring Boot"</span>&nbsp;
+          <span class="t-hl">"Angular"</span>&nbsp;
+          <span class="t-hl">"React"</span>&nbsp;
+          <span class="t-hl">"PostgreSQL"</span>
         </div>
-        <div class="output">
-          <span class="output-hl">"PostgreSQL"</span> <span class="output-hl">"Docker"</span> <span class="output-hl">"CI/CD"</span>
+        <div class="t-out">
+          <span class="t-hl">"Docker"</span>&nbsp;
+          <span class="t-hl">"CI/CD"</span>&nbsp;
+          <span class="t-hl">"REST APIs"</span>&nbsp;
+          <span class="t-hl">"Hibernate ORM"</span>
         </div>
         <br/>
         <div>
-          <span class="prompt">mehmed</span><span style="color:var(--muted)">@</span><span class="prompt-path">portfolio</span><span class="prompt"> $ </span>
-          <span class="cmd">echo $EXPERIENCE</span>
+          <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
+          <span class="t-prompt"> $ </span><span class="t-cmd">echo $CURRENT_STATUS</span>
         </div>
-        <div class="output"><span class="output-hl">3+ years</span> enterprise · Porsche Informatik GmbH · VW Group IAM</div>
-        <br/>
+        <div class="t-out" style="color:var(--green);">✓ 3+ years @ Porsche Informatik / VW Group · Open to contracts</div>
         <div>
-          <span class="prompt">mehmed</span><span style="color:var(--muted)">@</span><span class="prompt-path">portfolio</span><span class="prompt"> $ </span>
-          <span class="cmd">git status</span>
-        </div>
-        <div class="output" style="color:var(--green);">✓ ready to take on new freelance challenges</div>
-        <div>
-          <span class="prompt">mehmed</span><span style="color:var(--muted)">@</span><span class="prompt-path">portfolio</span><span class="prompt"> $ </span><span class="cursor"></span>
+          <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
+          <span class="t-prompt"> $ </span><span class="cursor"></span>
         </div>
       </div>
+    </div>
+
+    <!-- Badge -->
+    <div class="avail-banner fade-in">
+      <div class="avail-dot"></div>
+      <span data-i18n="avail">Open for Freelance Contracts — 2025</span>
     </div>
 
     <!-- Headline -->
-    <div class="avail-banner fade-in">
-      <div class="avail-dot"></div>
-      Open for Freelance Contracts — 2025
-    </div>
-
     <h1 class="hero-headline fade-in">
-      Enterprise-grade code.<br>
-      <em>Freelancer agility.</em>
+      <span data-i18n="hero_h1">Enterprise-grade code.</span><br>
+      <em data-i18n="hero_h2">Freelancer agility.</em>
     </h1>
-    <p class="hero-sub fade-in">
-      I'm Mehmed — a Full Stack Developer with <strong>3+ years</strong> building scalable web applications for Porsche & Volkswagen Group. Now bringing that enterprise-level craftsmanship to your project.
+
+    <p class="hero-sub fade-in" data-i18n-html="hero_sub">
+      I'm Mehmed — a Full Stack Developer with <strong>3+ years</strong> building scalable web applications for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship to your project.
     </p>
 
     <div class="hero-badges fade-in">
       <span class="badge hi">Java Spring Boot</span>
       <span class="badge hi">Angular</span>
       <span class="badge hi">React</span>
+      <span class="badge hi">TypeScript</span>
       <span class="badge">PostgreSQL</span>
       <span class="badge">Docker</span>
       <span class="badge">CI/CD</span>
       <span class="badge">REST APIs</span>
       <span class="badge">Hibernate ORM</span>
+      <span class="badge">OAuth / IAM</span>
     </div>
 
     <div class="hero-actions fade-in">
       <a href="mailto:maljoki.mehmed@gmail.com" class="btn-primary">
-        ✉ Get in Touch
+        ✉ <span data-i18n="nav_hire_long">Get in Touch</span>
       </a>
-      <a href="#experience" class="btn-secondary">
-        View Experience →
-      </a>
+      <a href="#experience" class="btn-secondary" data-i18n="view_exp">View Experience →</a>
+      <button class="btn-download" onclick="downloadCV()" data-i18n="download_cv">↓ Download CV</button>
     </div>
 
   </div>
@@ -626,31 +846,33 @@
 
 <hr class="divider" />
 
-<!-- ABOUT -->
+<!-- ═══════════════ ABOUT ═══════════════ -->
 <section id="about">
   <div class="container">
-    <div class="section-label">about</div>
-    <h2 class="section-title">Who I Am</h2>
-    <div class="about-grid fade-in">
+    <div class="section-label" data-i18n="about_label">about</div>
+    <h2 class="section-title" data-i18n="about_title">Who I Am</h2>
+
+    <div class="stats-row fade-in">
       <div class="stat-card">
         <div class="stat-num">3+</div>
-        <div class="stat-label">Years of enterprise-level experience</div>
+        <div class="stat-label" data-i18n="stat1">Years of enterprise experience</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">2</div>
-        <div class="stat-label">Large-scale production systems delivered</div>
+        <div class="stat-label" data-i18n="stat2">Production systems delivered</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">10+</div>
-        <div class="stat-label">Technologies mastered end-to-end</div>
+        <div class="stat-label" data-i18n="stat3">Technologies mastered</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Languages spoken fluently</div>
+        <div class="stat-num">4</div>
+        <div class="stat-label" data-i18n="stat4">Languages spoken</div>
       </div>
     </div>
-    <p class="about-text fade-in">
-      I'm a <strong>Full Stack Software Developer</strong> based near Vienna, Austria, currently studying <strong>Software & Information Engineering</strong> at TU Vienna. My career has been shaped by demanding enterprise projects — from identity & access management systems for the Volkswagen Group to contract lifecycle platforms at Porsche Informatik — where reliability, clean architecture, and maintainability are non-negotiable.<br/><br/>
+
+    <p class="about-text fade-in" data-i18n-html="about_p">
+      I'm a <strong>Full Stack Software Developer</strong> based in Vienna, Austria, currently studying <strong>Software &amp; Information Engineering</strong> at TU Vienna. My career has been shaped by demanding enterprise projects — from identity &amp; access management systems for the Volkswagen Group to contract lifecycle platforms at Porsche Informatik — where reliability, clean architecture, and maintainability are non-negotiable.<br><br>
       As a freelancer, I bring that same rigour to your project, whether it's a greenfield application, a legacy modernization, or a missing backend service. I care deeply about <strong>code quality, documentation, and delivery</strong> — not just shipping features, but shipping them right.
     </p>
   </div>
@@ -658,30 +880,26 @@
 
 <hr class="divider" />
 
-<!-- SKILLS -->
+<!-- ═══════════════ SKILLS ═══════════════ -->
 <section id="skills">
   <div class="container">
-    <div class="section-label">skills</div>
-    <h2 class="section-title">Tech Stack</h2>
-    <p class="section-desc">Battle-tested tools from real enterprise projects, not just tutorials.</p>
+    <div class="section-label" data-i18n="skills_label">skills</div>
+    <h2 class="section-title" data-i18n="skills_title">Tech Stack</h2>
+    <p class="section-desc" data-i18n="skills_desc">Battle-tested tools from real enterprise projects, not just tutorials.</p>
 
     <div class="skills-grid">
-
       <div class="skill-card fade-in">
         <div class="skill-card-head">
           <div class="skill-icon">☕</div>
           <div>
-            <div class="skill-card-name">Backend — Java</div>
-            <div class="skill-card-sub">primary language</div>
+            <div class="skill-card-name" data-i18n="sk1_name">Backend — Java</div>
+            <div class="skill-card-sub" data-i18n="sk1_sub">primary language</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">Spring Boot</span>
-          <span class="stag">Hibernate ORM</span>
-          <span class="stag">Maven</span>
-          <span class="stag">JSF</span>
-          <span class="stag">JUnit</span>
-          <span class="stag">Mockito</span>
+          <span class="stag">Spring Boot</span><span class="stag">Hibernate ORM</span>
+          <span class="stag">Maven</span><span class="stag">JSF</span>
+          <span class="stag">JUnit</span><span class="stag">Mockito</span>
           <span class="stag">REST APIs</span>
         </div>
       </div>
@@ -690,17 +908,14 @@
         <div class="skill-card-head">
           <div class="skill-icon">🌐</div>
           <div>
-            <div class="skill-card-name">Frontend</div>
-            <div class="skill-card-sub">modern frameworks</div>
+            <div class="skill-card-name" data-i18n="sk2_name">Frontend</div>
+            <div class="skill-card-sub" data-i18n="sk2_sub">modern frameworks</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">Angular</span>
-          <span class="stag">React</span>
-          <span class="stag">TypeScript</span>
-          <span class="stag">HTML5</span>
-          <span class="stag">CSS3</span>
-          <span class="stag">JavaScript</span>
+          <span class="stag">Angular</span><span class="stag">React</span>
+          <span class="stag">TypeScript</span><span class="stag">HTML5</span>
+          <span class="stag">CSS3</span><span class="stag">JavaScript</span>
         </div>
       </div>
 
@@ -708,15 +923,13 @@
         <div class="skill-card-head">
           <div class="skill-icon">🗄️</div>
           <div>
-            <div class="skill-card-name">Databases</div>
-            <div class="skill-card-sub">relational & nosql</div>
+            <div class="skill-card-name" data-i18n="sk3_name">Databases</div>
+            <div class="skill-card-sub" data-i18n="sk3_sub">relational & nosql</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">PostgreSQL</span>
-          <span class="stag">MySQL</span>
-          <span class="stag">MongoDB</span>
-          <span class="stag">SQL</span>
+          <span class="stag">PostgreSQL</span><span class="stag">MySQL</span>
+          <span class="stag">MongoDB</span><span class="stag">SQL</span>
           <span class="stag">Query Optimization</span>
         </div>
       </div>
@@ -725,17 +938,14 @@
         <div class="skill-card-head">
           <div class="skill-icon">🐳</div>
           <div>
-            <div class="skill-card-name">DevOps & Tools</div>
-            <div class="skill-card-sub">delivery pipeline</div>
+            <div class="skill-card-name" data-i18n="sk4_name">DevOps & Tooling</div>
+            <div class="skill-card-sub" data-i18n="sk4_sub">delivery pipeline</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">Docker</span>
-          <span class="stag">CI/CD</span>
-          <span class="stag">Linux</span>
-          <span class="stag">Shell</span>
-          <span class="stag">Postman</span>
-          <span class="stag">Git</span>
+          <span class="stag">Docker</span><span class="stag">CI/CD</span>
+          <span class="stag">Linux</span><span class="stag">Shell</span>
+          <span class="stag">Git</span><span class="stag">Postman</span>
         </div>
       </div>
 
@@ -743,13 +953,12 @@
         <div class="skill-card-head">
           <div class="skill-icon">🔬</div>
           <div>
-            <div class="skill-card-name">Other Languages</div>
-            <div class="skill-card-sub">academic & systems</div>
+            <div class="skill-card-name" data-i18n="sk5_name">Other Languages</div>
+            <div class="skill-card-sub" data-i18n="sk5_sub">academic & systems</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">C</span>
-          <span class="stag">Prolog</span>
+          <span class="stag">C</span><span class="stag">Prolog</span>
           <span class="stag">Haskell</span>
         </div>
       </div>
@@ -758,84 +967,78 @@
         <div class="skill-card-head">
           <div class="skill-icon">🤖</div>
           <div>
-            <div class="skill-card-name">Interest Areas</div>
-            <div class="skill-card-sub">always learning</div>
+            <div class="skill-card-name" data-i18n="sk6_name">Areas of Interest</div>
+            <div class="skill-card-sub" data-i18n="sk6_sub">always learning</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">Compilers</span>
-          <span class="stag">Artificial Intelligence</span>
+          <span class="stag">AI / ML</span><span class="stag">Compilers</span>
           <span class="stag">System Design</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <hr class="divider" />
 
-<!-- EXPERIENCE -->
+<!-- ═══════════════ EXPERIENCE ═══════════════ -->
 <section id="experience">
   <div class="container">
-    <div class="section-label">experience</div>
-    <h2 class="section-title">Work History</h2>
-    <p class="section-desc">Enterprise projects, real impact, production systems used by thousands.</p>
+    <div class="section-label" data-i18n="exp_label">experience</div>
+    <h2 class="section-title" data-i18n="exp_title">Work History</h2>
+    <p class="section-desc" data-i18n="exp_desc">Enterprise projects, real impact, production systems used by thousands.</p>
 
     <div class="exp-list">
 
+      <!-- Job 1 -->
       <div class="exp-card fade-in">
         <div class="exp-top">
           <div>
-            <div class="exp-role">Full Stack Java Developer</div>
+            <div class="exp-role" data-i18n="e1_role">Full Stack Java Developer</div>
             <div class="exp-company">Porsche Informatik GmbH</div>
-            <div class="exp-project">▸ Business Partner & Contract Management System</div>
+            <div class="exp-project" data-i18n="e1_project">▸ Business Partner &amp; Contract Management System</div>
           </div>
-          <div class="exp-period">Feb 2023 → Present</div>
+          <div class="exp-period" data-i18n="e1_period">Feb 2023 → Present</div>
         </div>
         <div class="exp-tech">
-          <span class="tech-tag">Java Spring Boot</span>
-          <span class="tech-tag">Angular</span>
-          <span class="tech-tag">Hibernate</span>
-          <span class="tech-tag">PostgreSQL</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">CI/CD</span>
+          <span class="tech-tag">Java Spring Boot</span><span class="tech-tag">Angular</span>
+          <span class="tech-tag">Hibernate</span><span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">Docker</span><span class="tech-tag">CI/CD</span>
           <span class="tech-tag">REST APIs</span>
         </div>
-        <ul class="exp-bullets">
-          <li>Developed a full-stack web application to manage business partners and contracts, streamlining processes for contract creation, approval, and lifecycle tracking.</li>
-          <li>Designed a scalable Spring Boot backend with secure REST APIs for partner management, contract versioning, and automated workflow notifications.</li>
-          <li>Built a responsive Angular frontend with dynamic data visualization and seamless backend integration.</li>
-          <li>Integrated Hibernate ORM with PostgreSQL for optimized query performance and complex entity relationships.</li>
-          <li>Improved code quality and reliability through JUnit & Mockito unit and integration test suites.</li>
-          <li>Containerized the application with Docker and established CI/CD pipelines, reducing deployment time significantly.</li>
+        <ul class="exp-bullets" id="e1-bullets">
+          <li data-i18n="e1_b1">Developed a full-stack web application to manage business partners and contracts, streamlining processes for contract creation, approval, and lifecycle tracking.</li>
+          <li data-i18n="e1_b2">Designed a scalable Spring Boot backend with secure REST APIs for partner management, contract versioning, and automated workflow notifications.</li>
+          <li data-i18n="e1_b3">Built a responsive Angular frontend with dynamic data visualization and seamless backend integration.</li>
+          <li data-i18n="e1_b4">Integrated Hibernate ORM with PostgreSQL for optimized query performance and complex entity relationships.</li>
+          <li data-i18n="e1_b5">Improved code quality and reliability through JUnit &amp; Mockito unit and integration test suites.</li>
+          <li data-i18n="e1_b6">Containerized the application with Docker and established CI/CD pipelines, reducing deployment time significantly.</li>
         </ul>
       </div>
 
+      <!-- Job 2 -->
       <div class="exp-card fade-in">
         <div class="exp-top">
           <div>
-            <div class="exp-role">Full Stack Software Developer</div>
+            <div class="exp-role" data-i18n="e2_role">Full Stack Software Developer</div>
             <div class="exp-company">Porsche Informatik GmbH</div>
-            <div class="exp-project">▸ Group Retail Portal & Extended Vehicle — VW Group IAM</div>
+            <div class="exp-project" data-i18n="e2_project">▸ Group Retail Portal &amp; Extended Vehicle — VW Group IAM</div>
           </div>
-          <div class="exp-period">Apr 2021 → Feb 2023</div>
+          <div class="exp-period" data-i18n="e2_period">Apr 2021 → Feb 2023</div>
         </div>
         <div class="exp-tech">
-          <span class="tech-tag">Java Spring Boot</span>
-          <span class="tech-tag">React / JSF</span>
-          <span class="tech-tag">Hibernate</span>
-          <span class="tech-tag">MySQL</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">CI/CD</span>
+          <span class="tech-tag">Java Spring Boot</span><span class="tech-tag">React / JSF</span>
+          <span class="tech-tag">Hibernate</span><span class="tech-tag">MySQL</span>
+          <span class="tech-tag">Docker</span><span class="tech-tag">CI/CD</span>
           <span class="tech-tag">OAuth / IAM</span>
         </div>
-        <ul class="exp-bullets">
-          <li>Built a secure, large-scale web application within Volkswagen Group's Identity & Access Management (IAM) ecosystem for authentication and authorization across corporate systems.</li>
-          <li>Developed dynamic UI components using Java Server Faces (JSF), Facelets, and managed beans, aligned with VW corporate design standards.</li>
-          <li>Engineered modular Spring Boot backend services with seamless integration into enterprise identity infrastructure.</li>
-          <li>Optimized database operations and query efficiency, improving application responsiveness and scalability.</li>
-          <li>Authored comprehensive technical documentation covering backend architecture and data models.</li>
+        <ul class="exp-bullets" id="e2-bullets">
+          <li data-i18n="e2_b1">Built a secure, large-scale web application within Volkswagen Group's Identity &amp; Access Management (IAM) ecosystem for authentication and authorization across corporate systems.</li>
+          <li data-i18n="e2_b2">Developed dynamic UI components using Java Server Faces (JSF), Facelets, and managed beans, aligned with VW corporate design standards.</li>
+          <li data-i18n="e2_b3">Engineered modular Spring Boot backend services with seamless integration into enterprise identity infrastructure.</li>
+          <li data-i18n="e2_b4">Optimized database operations and query efficiency, improving application responsiveness and scalability.</li>
+          <li data-i18n="e2_b5">Authored comprehensive technical documentation covering backend architecture and data models.</li>
         </ul>
       </div>
 
@@ -845,43 +1048,49 @@
 
 <hr class="divider" />
 
-<!-- SERVICES -->
+<!-- ═══════════════ SERVICES ═══════════════ -->
 <section id="services">
   <div class="container">
-    <div class="section-label">services</div>
-    <h2 class="section-title">What I Offer</h2>
-    <p class="section-desc">From single features to full applications — here's how I can help your project.</p>
+    <div class="section-label" data-i18n="srv_label">services</div>
+    <h2 class="section-title" data-i18n="srv_title">What I Offer</h2>
+    <p class="section-desc" data-i18n="srv_desc">From single features to full applications — here's how I can help your project.</p>
 
     <div class="services-grid">
       <div class="service-card fade-in">
         <div class="service-num">01 /</div>
-        <div class="service-title">Backend Development</div>
-        <p class="service-desc">Robust REST APIs and microservices in Java Spring Boot. Clean architecture, proper error handling, security, and thorough documentation — built to last.</p>
+        <div class="service-icon">⚙️</div>
+        <div class="service-title" data-i18n="s1_title">Backend Development</div>
+        <p class="service-desc" data-i18n="s1_desc">Robust REST APIs and microservices in Java Spring Boot. Clean architecture, proper error handling, security, and thorough documentation — built to last.</p>
       </div>
       <div class="service-card fade-in">
         <div class="service-num">02 /</div>
-        <div class="service-title">Frontend Development</div>
-        <p class="service-desc">Responsive, performant SPAs in Angular or React. Component-driven, well-structured UIs that communicate flawlessly with backend services.</p>
+        <div class="service-icon">🖥️</div>
+        <div class="service-title" data-i18n="s2_title">Frontend Development</div>
+        <p class="service-desc" data-i18n="s2_desc">Responsive, performant SPAs in Angular or React. Component-driven, well-structured UIs that communicate flawlessly with backend services.</p>
       </div>
       <div class="service-card fade-in">
         <div class="service-num">03 /</div>
-        <div class="service-title">Database Design & Optimization</div>
-        <p class="service-desc">Schema design, migration strategies, query optimization for PostgreSQL, MySQL, and MongoDB. Your data layer built for scale from day one.</p>
+        <div class="service-icon">🗄️</div>
+        <div class="service-title" data-i18n="s3_title">Database Design & Optimization</div>
+        <p class="service-desc" data-i18n="s3_desc">Schema design, migration strategies, and query optimization for PostgreSQL, MySQL, and MongoDB. Your data layer built for scale from day one.</p>
       </div>
       <div class="service-card fade-in">
         <div class="service-num">04 /</div>
-        <div class="service-title">CI/CD & Containerization</div>
-        <p class="service-desc">Dockerize your application and set up automated build, test, and deployment pipelines. Reliable delivery without the manual overhead.</p>
+        <div class="service-icon">🚀</div>
+        <div class="service-title" data-i18n="s4_title">CI/CD & Containerization</div>
+        <p class="service-desc" data-i18n="s4_desc">Dockerize your application and set up automated build, test, and deployment pipelines. Reliable delivery without the manual overhead.</p>
       </div>
       <div class="service-card fade-in">
         <div class="service-num">05 /</div>
-        <div class="service-title">Code Review & Refactoring</div>
-        <p class="service-desc">Fresh eyes on your existing codebase. I identify bottlenecks, security gaps, and tech debt — then fix them with clear, maintainable solutions.</p>
+        <div class="service-icon">🔍</div>
+        <div class="service-title" data-i18n="s5_title">Code Review & Refactoring</div>
+        <p class="service-desc" data-i18n="s5_desc">Fresh eyes on your existing codebase. I identify bottlenecks, security gaps, and tech debt — then fix them with clear, maintainable solutions.</p>
       </div>
       <div class="service-card fade-in">
         <div class="service-num">06 /</div>
-        <div class="service-title">Technical Documentation</div>
-        <p class="service-desc">Architecture docs, API references, onboarding guides, and deployment runbooks. Your team deserves to understand what was built and why.</p>
+        <div class="service-icon">📄</div>
+        <div class="service-title" data-i18n="s6_title">Technical Documentation</div>
+        <p class="service-desc" data-i18n="s6_desc">Architecture docs, API references, onboarding guides, and deployment runbooks. Your team deserves to understand what was built and why.</p>
       </div>
     </div>
   </div>
@@ -889,20 +1098,23 @@
 
 <hr class="divider" />
 
-<!-- EDUCATION -->
+<!-- ═══════════════ EDUCATION ═══════════════ -->
 <section id="education">
   <div class="container">
-    <div class="section-label">education</div>
-    <h2 class="section-title">Academic Background</h2>
+    <div class="section-label" data-i18n="edu_label">education</div>
+    <h2 class="section-title" data-i18n="edu_title">Academic Background</h2>
+
     <div class="edu-grid fade-in">
       <div class="edu-card">
-        <div class="edu-period">2016 → Present (ongoing)</div>
-        <div class="edu-degree">BSc. Software & Information Engineering</div>
+        <div class="edu-icon">🎓</div>
+        <div class="edu-period" data-i18n="edu1_period">2016 → Present (ongoing)</div>
+        <div class="edu-degree" data-i18n="edu1_degree">BSc. Software &amp; Information Engineering</div>
         <div class="edu-school">Technical University of Vienna (TU Wien)</div>
       </div>
       <div class="edu-card">
+        <div class="edu-icon">🏫</div>
         <div class="edu-period">2011 — 2016</div>
-        <div class="edu-degree">Matura (Abitur equivalent)</div>
+        <div class="edu-degree" data-i18n="edu2_degree">Matura (Abitur equivalent)</div>
         <div class="edu-school">HTL Mödling — Higher Technical College</div>
       </div>
     </div>
@@ -911,55 +1123,55 @@
 
 <hr class="divider" />
 
-<!-- CONTACT -->
+<!-- ═══════════════ CONTACT ═══════════════ -->
 <section id="contact">
   <div class="container">
-    <div class="section-label">contact</div>
-    <h2 class="section-title">Let's Work Together</h2>
+    <div class="section-label" data-i18n="ct_label">contact</div>
+    <h2 class="section-title" data-i18n="ct_title">Let's Work Together</h2>
 
     <div class="contact-grid">
       <div class="contact-info">
-        <a href="mailto:maljoki.mehmed@gmail.com" class="contact-item">
+        <a href="mailto:maljoki.mehmed@gmail.com" class="contact-item fade-in">
           <div class="contact-icon">✉️</div>
           <div>
             <div class="contact-label">email</div>
             <div class="contact-val">maljoki.mehmed@gmail.com</div>
           </div>
         </a>
-        <a href="tel:+4367762307555" class="contact-item">
+        <a href="tel:+4367762307555" class="contact-item fade-in">
           <div class="contact-icon">📞</div>
           <div>
             <div class="contact-label">phone</div>
             <div class="contact-val">+43 677 623 07555</div>
           </div>
         </a>
-        <a href="https://linkedin.com/in/mehmed-maljoki" target="_blank" class="contact-item">
+        <a href="https://linkedin.com/in/mehmed-maljoki" target="_blank" class="contact-item fade-in">
           <div class="contact-icon">💼</div>
           <div>
-            <div class="contact-label">linkedin</div>
+            <div class="contact-label">LinkedIn</div>
             <div class="contact-val">Mehmed Maljoki</div>
           </div>
         </a>
-        <a href="https://github.com/mehmed-maljoki" target="_blank" class="contact-item">
+        <a href="https://github.com/mehmed-maljoki" target="_blank" class="contact-item fade-in">
           <div class="contact-icon">🐙</div>
           <div>
-            <div class="contact-label">github</div>
-            <div class="contact-val">Mehmed Maljoki</div>
+            <div class="contact-label">GitHub</div>
+            <div class="contact-val">mehmed-maljoki</div>
           </div>
         </a>
-        <div class="contact-item" style="cursor:default;">
+        <div class="contact-item fade-in" style="cursor:default;">
           <div class="contact-icon">📍</div>
           <div>
-            <div class="contact-label">location</div>
-            <div class="contact-val">Baden / Vienna, Austria</div>
+            <div class="contact-label" data-i18n="loc_label">location</div>
+            <div class="contact-val" data-i18n="loc_val">Vienna, Austria</div>
           </div>
         </div>
       </div>
 
-      <div class="contact-cta">
-        <h3>Ready to start a project?</h3>
-        <p>Whether you need a new API, a full web application, or someone to rescue an existing codebase — I'm available for freelance contracts and happy to discuss your requirements in a quick call.</p>
-        <a href="mailto:maljoki.mehmed@gmail.com" class="btn-primary" style="align-self:flex-start;">
+      <div class="contact-cta fade-in">
+        <h3 data-i18n="cta_title">Ready to start a project?</h3>
+        <p data-i18n="cta_text">Whether you need a new API, a full web application, or someone to rescue an existing codebase — I'm available for freelance contracts and happy to discuss your requirements in a quick call.</p>
+        <a href="mailto:maljoki.mehmed@gmail.com" class="btn-primary" style="align-self:flex-start;" data-i18n="cta_btn">
           ✉ Send me a message
         </a>
       </div>
@@ -971,7 +1183,7 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-logo">mehmed.dev $</div>
-    <div class="footer-text">© 2025 Maljoki Mehmed · Built with passion, shipped with precision.</div>
+    <div class="footer-text" data-i18n="footer_text">© 2025 Maljoki Mehmed · Built with passion, shipped with precision.</div>
     <div class="footer-links">
       <a href="https://linkedin.com/in/mehmed-maljoki" target="_blank">LinkedIn</a>
       <a href="https://github.com/mehmed-maljoki" target="_blank">GitHub</a>
@@ -981,34 +1193,515 @@
 </footer>
 
 <script>
-  // Intersection Observer for fade-in animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
+/* ═══════════════════════════════════════════
+   i18n TRANSLATIONS
+═══════════════════════════════════════════ */
+const translations = {
+  en: {
+    nav_about: "about", nav_skills: "skills", nav_exp: "experience",
+    nav_services: "services", nav_contact: "contact",
+    nav_hire: "hire me →", nav_hire_long: "Get in Touch",
+    avail: "Open for Freelance Contracts — 2025",
+    hero_h1: "Enterprise-grade code.",
+    hero_h2: "Freelancer agility.",
+    hero_sub: `I'm Mehmed — a Full Stack Developer with <strong>3+ years</strong> building scalable web applications for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship to your project.`,
+    download_cv: "↓ Download CV",
+    view_exp: "View Experience →",
+    about_label: "about", about_title: "Who I Am",
+    stat1: "Years of enterprise experience", stat2: "Production systems delivered",
+    stat3: "Technologies mastered", stat4: "Languages spoken",
+    about_p: `I'm a <strong>Full Stack Software Developer</strong> based in Vienna, Austria, currently studying <strong>Software &amp; Information Engineering</strong> at TU Vienna. My career has been shaped by demanding enterprise projects — from identity &amp; access management systems for the Volkswagen Group to contract lifecycle platforms at Porsche Informatik — where reliability, clean architecture, and maintainability are non-negotiable.<br><br>As a freelancer, I bring that same rigour to your project, whether it's a greenfield application, a legacy modernization, or a missing backend service. I care deeply about <strong>code quality, documentation, and delivery</strong> — not just shipping features, but shipping them right.`,
+    skills_label: "skills", skills_title: "Tech Stack",
+    skills_desc: "Battle-tested tools from real enterprise projects, not just tutorials.",
+    sk1_name: "Backend — Java", sk1_sub: "primary language",
+    sk2_name: "Frontend", sk2_sub: "modern frameworks",
+    sk3_name: "Databases", sk3_sub: "relational & nosql",
+    sk4_name: "DevOps & Tooling", sk4_sub: "delivery pipeline",
+    sk5_name: "Other Languages", sk5_sub: "academic & systems",
+    sk6_name: "Areas of Interest", sk6_sub: "always learning",
+    exp_label: "experience", exp_title: "Work History",
+    exp_desc: "Enterprise projects, real impact, production systems used by thousands.",
+    e1_role: "Full Stack Java Developer",
+    e1_project: "▸ Business Partner & Contract Management System",
+    e1_period: "Feb 2023 → Present",
+    e1_b1: "Developed a full-stack web application to manage business partners and contracts, streamlining processes for contract creation, approval, and lifecycle tracking.",
+    e1_b2: "Designed a scalable Spring Boot backend with secure REST APIs for partner management, contract versioning, and automated workflow notifications.",
+    e1_b3: "Built a responsive Angular frontend with dynamic data visualization and seamless backend integration.",
+    e1_b4: "Integrated Hibernate ORM with PostgreSQL for optimized query performance and complex entity relationships.",
+    e1_b5: "Improved code quality and reliability through JUnit & Mockito unit and integration test suites.",
+    e1_b6: "Containerized the application with Docker and established CI/CD pipelines, reducing deployment time significantly.",
+    e2_role: "Full Stack Software Developer",
+    e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
+    e2_period: "Apr 2021 → Feb 2023",
+    e2_b1: "Built a secure, large-scale web application within Volkswagen Group's Identity & Access Management (IAM) ecosystem for authentication and authorization across corporate systems.",
+    e2_b2: "Developed dynamic UI components using Java Server Faces (JSF), Facelets, and managed beans, aligned with VW corporate design standards.",
+    e2_b3: "Engineered modular Spring Boot backend services with seamless integration into enterprise identity infrastructure.",
+    e2_b4: "Optimized database operations and query efficiency, improving application responsiveness and scalability.",
+    e2_b5: "Authored comprehensive technical documentation covering backend architecture and data models.",
+    srv_label: "services", srv_title: "What I Offer",
+    srv_desc: "From single features to full applications — here's how I can help your project.",
+    s1_title: "Backend Development",
+    s1_desc: "Robust REST APIs and microservices in Java Spring Boot. Clean architecture, proper error handling, security, and thorough documentation — built to last.",
+    s2_title: "Frontend Development",
+    s2_desc: "Responsive, performant SPAs in Angular or React. Component-driven, well-structured UIs that communicate flawlessly with backend services.",
+    s3_title: "Database Design & Optimization",
+    s3_desc: "Schema design, migration strategies, and query optimization for PostgreSQL, MySQL, and MongoDB. Your data layer built for scale from day one.",
+    s4_title: "CI/CD & Containerization",
+    s4_desc: "Dockerize your application and set up automated build, test, and deployment pipelines. Reliable delivery without the manual overhead.",
+    s5_title: "Code Review & Refactoring",
+    s5_desc: "Fresh eyes on your existing codebase. I identify bottlenecks, security gaps, and tech debt — then fix them with clear, maintainable solutions.",
+    s6_title: "Technical Documentation",
+    s6_desc: "Architecture docs, API references, onboarding guides, and deployment runbooks. Your team deserves to understand what was built and why.",
+    edu_label: "education", edu_title: "Academic Background",
+    edu1_period: "2016 → Present (ongoing)",
+    edu1_degree: "BSc. Software & Information Engineering",
+    edu2_degree: "Matura (Abitur equivalent)",
+    ct_label: "contact", ct_title: "Let's Work Together",
+    cta_title: "Ready to start a project?",
+    cta_text: "Whether you need a new API, a full web application, or someone to rescue an existing codebase — I'm available for freelance contracts and happy to discuss your requirements in a quick call.",
+    cta_btn: "✉ Send me a message",
+    loc_label: "location", loc_val: "Vienna, Austria",
+    footer_text: "© 2025 Maljoki Mehmed · Built with passion, shipped with precision.",
+  },
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  de: {
+    nav_about: "über mich", nav_skills: "fähigkeiten", nav_exp: "erfahrung",
+    nav_services: "leistungen", nav_contact: "kontakt",
+    nav_hire: "anfragen →", nav_hire_long: "Kontakt aufnehmen",
+    avail: "Verfügbar für Freelance-Aufträge — 2025",
+    hero_h1: "Code auf Enterprise-Niveau.",
+    hero_h2: "Freelancer-Flexibilität.",
+    hero_sub: `Ich bin Mehmed — ein Full Stack Developer mit <strong>3+ Jahren</strong> Erfahrung im Aufbau skalierbarer Webanwendungen für Porsche &amp; Volkswagen Group. Dieses Enterprise-Know-how bringe ich jetzt in Ihr Projekt.`,
+    download_cv: "↓ Lebenslauf laden",
+    view_exp: "Erfahrung ansehen →",
+    about_label: "über mich", about_title: "Wer ich bin",
+    stat1: "Jahre Enterprise-Erfahrung", stat2: "Produktivsysteme ausgeliefert",
+    stat3: "Technologien gemeistert", stat4: "Gesprochene Sprachen",
+    about_p: `Ich bin ein <strong>Full Stack Software Developer</strong> mit Wohnsitz in Wien, Österreich, und studiere derzeit <strong>Software &amp; Information Engineering</strong> an der TU Wien. Meine Karriere wurde durch anspruchsvolle Enterprise-Projekte geprägt — von Identity &amp; Access Management Systemen für die Volkswagen-Gruppe bis zu Vertragsmanagement-Plattformen bei Porsche Informatik — wo Zuverlässigkeit, saubere Architektur und Wartbarkeit unverzichtbar sind.<br><br>Als Freelancer bringe ich dieselbe Sorgfalt in Ihr Projekt, egal ob es sich um eine neue Anwendung, eine Legacy-Modernisierung oder einen fehlenden Backend-Service handelt. <strong>Codequalität, Dokumentation und Lieferung</strong> liegen mir am Herzen — nicht nur Features ausliefern, sondern sie richtig ausliefern.`,
+    skills_label: "fähigkeiten", skills_title: "Tech Stack",
+    skills_desc: "Bewährte Werkzeuge aus echten Enterprise-Projekten — nicht nur Tutorials.",
+    sk1_name: "Backend — Java", sk1_sub: "Primärsprache",
+    sk2_name: "Frontend", sk2_sub: "moderne Frameworks",
+    sk3_name: "Datenbanken", sk3_sub: "relational & nosql",
+    sk4_name: "DevOps & Tooling", sk4_sub: "Deployment-Pipeline",
+    sk5_name: "Weitere Sprachen", sk5_sub: "akademisch & systemnahe",
+    sk6_name: "Interessensgebiete", sk6_sub: "immer am Lernen",
+    exp_label: "erfahrung", exp_title: "Berufserfahrung",
+    exp_desc: "Enterprise-Projekte mit echtem Impact — Produktivsysteme für Tausende Nutzer.",
+    e1_role: "Full Stack Java Entwickler",
+    e1_project: "▸ Geschäftspartner- & Vertragsmanagement-System",
+    e1_period: "Feb 2023 → Heute",
+    e1_b1: "Entwicklung einer Full-Stack-Webanwendung zur Verwaltung von Geschäftspartnern und Verträgen — Vertragsanlage, Genehmigung und Lifecycle-Tracking.",
+    e1_b2: "Konzeption eines skalierbaren Spring Boot Backends mit sicheren REST APIs für Partnerverwaltung, Versionierung und automatisierte Benachrichtigungen.",
+    e1_b3: "Aufbau eines responsiven Angular Frontends mit dynamischer Datenvisualisierung und nahtloser Backend-Integration.",
+    e1_b4: "Hibernate ORM Anbindung an PostgreSQL für optimierte Query-Performance und komplexe Entitätsbeziehungen.",
+    e1_b5: "Verbesserung der Codequalität durch JUnit- und Mockito-Unit- und Integrationstests.",
+    e1_b6: "Containerisierung der Anwendung mit Docker und Einrichtung von CI/CD-Pipelines — deutliche Reduzierung der Deployment-Zeiten.",
+    e2_role: "Full Stack Software Entwickler",
+    e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
+    e2_period: "Apr 2021 → Feb 2023",
+    e2_b1: "Aufbau einer sicheren, groß angelegten Webanwendung im Identity & Access Management (IAM) Ökosystem der Volkswagen Group für unternehmensweite Authentifizierung und Autorisierung.",
+    e2_b2: "Entwicklung dynamischer UI-Komponenten mit Java Server Faces (JSF), Facelets und Managed Beans nach VW Corporate Design.",
+    e2_b3: "Entwicklung modularer Spring Boot Backend-Services mit nahtloser Integration in die Enterprise-Identitätsinfrastruktur.",
+    e2_b4: "Optimierung von Datenbankoperationen und Query-Effizienz zur Verbesserung von Responsivität und Skalierbarkeit.",
+    e2_b5: "Erstellung umfassender technischer Dokumentationen zur Backend-Architektur und den Datenmodellen.",
+    srv_label: "leistungen", srv_title: "Was ich anbiete",
+    srv_desc: "Von einzelnen Features bis zur kompletten Anwendung — so kann ich Ihrem Projekt helfen.",
+    s1_title: "Backend-Entwicklung",
+    s1_desc: "Robuste REST APIs und Microservices in Java Spring Boot. Saubere Architektur, Fehlerbehandlung, Sicherheit und Dokumentation — gebaut um zu bleiben.",
+    s2_title: "Frontend-Entwicklung",
+    s2_desc: "Responsive, performante SPAs in Angular oder React. Komponentenbasierte UIs mit fehlerloser Backend-Anbindung.",
+    s3_title: "Datenbankdesign & Optimierung",
+    s3_desc: "Schema-Design, Migrationsstrategie und Query-Optimierung für PostgreSQL, MySQL und MongoDB — von Tag eins auf Wachstum ausgelegt.",
+    s4_title: "CI/CD & Containerisierung",
+    s4_desc: "Dockerisierung und Einrichtung automatisierter Build-, Test- und Deployment-Pipelines. Zuverlässige Auslieferung ohne manuellen Aufwand.",
+    s5_title: "Code Review & Refactoring",
+    s5_desc: "Frischer Blick auf Ihre Codebase. Ich identifiziere Bottlenecks, Sicherheitslücken und Tech-Debt — und beheibe sie mit klaren, wartbaren Lösungen.",
+    s6_title: "Technische Dokumentation",
+    s6_desc: "Architektur-Docs, API-Referenzen, Onboarding-Guides und Deployment-Runbooks. Ihr Team verdient es, zu verstehen, was gebaut wurde und warum.",
+    edu_label: "ausbildung", edu_title: "Akademischer Werdegang",
+    edu1_period: "2016 → Heute (laufend)",
+    edu1_degree: "BSc. Software & Information Engineering",
+    edu2_degree: "Matura (Abitur-Äquivalent)",
+    ct_label: "kontakt", ct_title: "Lass uns zusammenarbeiten",
+    cta_title: "Bereit, ein Projekt zu starten?",
+    cta_text: "Ob neue API, komplette Webanwendung oder Rettung einer bestehenden Codebase — ich bin für Freelance-Aufträge verfügbar und bespreche gerne Ihre Anforderungen in einem kurzen Gespräch.",
+    cta_btn: "✉ Nachricht senden",
+    loc_label: "standort", loc_val: "Wien, Österreich",
+    footer_text: "© 2025 Maljoki Mehmed · Mit Leidenschaft gebaut, mit Präzision ausgeliefert.",
+  },
 
-  // Smooth active nav highlight
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--orange)'
-        : '';
-    });
+  bs: {
+    nav_about: "o meni", nav_skills: "vještine", nav_exp: "iskustvo",
+    nav_services: "usluge", nav_contact: "kontakt",
+    nav_hire: "angažiraj me →", nav_hire_long: "Stupi u kontakt",
+    avail: "Dostupan za freelance ugovore — 2025",
+    hero_h1: "Kod na enterprise nivou.",
+    hero_h2: "Fleksibilnost freelancera.",
+    hero_sub: `Ja sam Mehmed — Full Stack Developer s <strong>3+ godina</strong> iskustva u izradi skalabilnih web aplikacija za Porsche &amp; Volkswagen Group. To enterprise znanje donosim u vaš projekat.`,
+    download_cv: "↓ Preuzmi CV",
+    view_exp: "Pogledaj iskustvo →",
+    about_label: "o meni", about_title: "Ko sam ja",
+    stat1: "Godine enterprise iskustva", stat2: "Produkcijska sistema isporučena",
+    stat3: "Savladanih tehnologija", stat4: "Govorna jezika",
+    about_p: `Ja sam <strong>Full Stack Software Developer</strong> sa sjedištem u Beču, Austrija, i trenutno studiram <strong>Software &amp; Information Engineering</strong> na Tehničkom univerzitetu u Beču (TU Wien). Moja karijera je oblikovana zahtjevnim enterprise projektima — od sistema za upravljanje identitetom za Volkswagen Group do platformi za upravljanje ugovorima u Porsche Informatiku — gdje su pouzdanost, čista arhitektura i održivost od ključne važnosti.<br><br>Kao freelancer, donosim isti nivo pažnje u vaš projekat, bez obzira da li se radi o novoj aplikaciji, modernizaciji legacy sistema ili nedostajućem backend servisu. Izuzetno mi je važna <strong>kvaliteta koda, dokumentacija i isporuka</strong> — ne samo slati funkcionalnosti, nego ih slati kako treba.`,
+    skills_label: "vještine", skills_title: "Tech Stack",
+    skills_desc: "Testovani alati iz stvarnih enterprise projekata — ne samo tutoriali.",
+    sk1_name: "Backend — Java", sk1_sub: "primarni jezik",
+    sk2_name: "Frontend", sk2_sub: "moderni frameworki",
+    sk3_name: "Baze podataka", sk3_sub: "relacione & nosql",
+    sk4_name: "DevOps & alati", sk4_sub: "pipeline isporuke",
+    sk5_name: "Ostali jezici", sk5_sub: "akademski & sistemski",
+    sk6_name: "Oblasti interesa", sk6_sub: "uvijek učim",
+    exp_label: "iskustvo", exp_title: "Radno iskustvo",
+    exp_desc: "Enterprise projekti, stvarni utjecaj, produkcijski sistemi koje koriste hiljade korisnika.",
+    e1_role: "Full Stack Java Developer",
+    e1_project: "▸ Sistem za upravljanje poslovnim partnerima i ugovorima",
+    e1_period: "Feb 2023 → danas",
+    e1_b1: "Razvio sam full-stack web aplikaciju za upravljanje poslovnim partnerima i ugovorima — kreiranje ugovora, odobravanje i praćenje životnog ciklusa.",
+    e1_b2: "Dizajnirao sam skalabilni Spring Boot backend sa sigurnim REST API-jima za upravljanje partnerima, verzioniranje ugovora i automatizovane notifikacije.",
+    e1_b3: "Izgradio sam responzivni Angular frontend s dinamičnom vizualizacijom podataka i besprijekornom integracijom s backendom.",
+    e1_b4: "Integrisao sam Hibernate ORM s PostgreSQL-om za optimizovane upite i složene veze između entiteta.",
+    e1_b5: "Poboljšao sam kvalitetu koda putem JUnit i Mockito unit i integracionih testova.",
+    e1_b6: "Kontejnerizovao aplikaciju s Dockerom i uspostavio CI/CD pipeline koji je značajno smanjio vrijeme deploymenta.",
+    e2_role: "Full Stack Software Developer",
+    e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
+    e2_period: "Apr 2021 → Feb 2023",
+    e2_b1: "Izgradio sam sigurnu, veliku web aplikaciju unutar IAM ekosistema Volkswagen Grupe za autentifikaciju i autorizaciju u korporativnim sistemima.",
+    e2_b2: "Razvio sam dinamičke UI komponente koristeći Java Server Faces (JSF), Facelets i managed beans prema VW korporativnim standardima.",
+    e2_b3: "Razvio sam modularne Spring Boot backend servise s integracijom u enterprise identity infrastrukturu.",
+    e2_b4: "Optimizovao sam operacije baze podataka i efikasnost upita, poboljšavajući responzivnost i skalabilnost aplikacije.",
+    e2_b5: "Napisao sveobuhvatnu tehničku dokumentaciju o backend arhitekturi i modelima podataka.",
+    srv_label: "usluge", srv_title: "Šta nudim",
+    srv_desc: "Od pojedinačnih funkcionalnosti do kompletnih aplikacija — evo kako mogu pomoći vašem projektu.",
+    s1_title: "Backend razvoj",
+    s1_desc: "Robusni REST API-ji i mikroservisi u Java Spring Boot. Čista arhitektura, upravljanje greškama, sigurnost i dokumentacija — izgrađeno da traje.",
+    s2_title: "Frontend razvoj",
+    s2_desc: "Responzivni, performantni SPAs u Angular-u ili React-u. Komponentni, dobro strukturirani UI koji savršeno komunicira s backend servisima.",
+    s3_title: "Dizajn i optimizacija baze podataka",
+    s3_desc: "Dizajn sheme, strategije migracije i optimizacija upita za PostgreSQL, MySQL i MongoDB. Vaš data layer spreman za rast od prvog dana.",
+    s4_title: "CI/CD & kontejnerizacija",
+    s4_desc: "Dockerizacija aplikacije i postavljanje automatizovanih pipeline-a za build, test i deployment. Pouzdana isporuka bez ručnog napora.",
+    s5_title: "Code review & refaktoring",
+    s5_desc: "Svježi pogled na vaš kod. Pronalazim bottlenecke, sigurnosne rupe i tech debt — i otklanjam ih jasnim, održivim rješenjima.",
+    s6_title: "Tehnička dokumentacija",
+    s6_desc: "Arhitekturni dokumenti, API reference, onboarding vodiči i deployment runbookovi. Vaš tim zaslužuje razumjeti šta je izgrađeno i zašto.",
+    edu_label: "obrazovanje", edu_title: "Akademsko obrazovanje",
+    edu1_period: "2016 → danas (u toku)",
+    edu1_degree: "BSc. Software & Information Engineering",
+    edu2_degree: "Matura (ekvivalent mature)",
+    ct_label: "kontakt", ct_title: "Hajde da radimo zajedno",
+    cta_title: "Spreman za pokretanje projekta?",
+    cta_text: "Trebate li novi API, kompletan web projekat ili nekoga ko će spasiti postojeći kod — dostupan sam za freelance ugovore i rado ću razgovarati o vašim zahtjevima.",
+    cta_btn: "✉ Pošalji poruku",
+    loc_label: "lokacija", loc_val: "Beč, Austrija",
+    footer_text: "© 2025 Maljoki Mehmed · Izgrađeno s pažnjom, isporučeno s preciznošću.",
+  },
+
+  sr: {
+    nav_about: "o meni", nav_skills: "veštine", nav_exp: "iskustvo",
+    nav_services: "usluge", nav_contact: "kontakt",
+    nav_hire: "angažuj me →", nav_hire_long: "Stupi u kontakt",
+    avail: "Dostupan za frilenserske ugovore — 2025",
+    hero_h1: "Kod na enterprise nivou.",
+    hero_h2: "Fleksibilnost frilenserа.",
+    hero_sub: `Ja sam Mehmed — Full Stack Developer sa <strong>3+ godine</strong> iskustva u razvoju skalabilnih veb aplikacija za Porsche &amp; Volkswagen Group. To enterprise znanje donosim u vaš projekat.`,
+    download_cv: "↓ Preuzmi CV",
+    view_exp: "Pogledaj iskustvo →",
+    about_label: "o meni", about_title: "Ko sam ja",
+    stat1: "Godine enterprise iskustva", stat2: "Produkcijska sistema isporučena",
+    stat3: "Savladanih tehnologija", stat4: "Govorna jezika",
+    about_p: `Ja sam <strong>Full Stack Software Developer</strong> sa sedištem u Beču, Austrija, i trenutno studiram <strong>Software &amp; Information Engineering</strong> na Tehničkom univerzitetu u Beču (TU Wien). Moja karijera je oblikovana zahtevnim enterprise projektima — od sistema za upravljanje identitetom za Volkswagen Group do platformi za upravljanje ugovorima u Porsche Informatiku — gde su pouzdanost, čista arhitektura i održivost od ključne važnosti.<br><br>Kao frилансер, donosim isti nivo pažnje u vaš projekat, bez obzira na to da li se radi o novoj aplikaciji, modernizaciji legacy sistema ili nedostajućem backend servisu. Izuzetno mi je važna <strong>kvalitet koda, dokumentacija i isporuka</strong> — ne samo slati funkcionalnosti, nego ih slati kako treba.`,
+    skills_label: "veštine", skills_title: "Tech Stack",
+    skills_desc: "Testovani alati iz stvarnih enterprise projekata — ne samo tutorijali.",
+    sk1_name: "Backend — Java", sk1_sub: "primarni jezik",
+    sk2_name: "Frontend", sk2_sub: "moderni frameworki",
+    sk3_name: "Baze podataka", sk3_sub: "relacione & nosql",
+    sk4_name: "DevOps & alati", sk4_sub: "pipeline isporuke",
+    sk5_name: "Ostali jezici", sk5_sub: "akademski & sistemski",
+    sk6_name: "Oblast interesovanja", sk6_sub: "uvek učim",
+    exp_label: "iskustvo", exp_title: "Radno iskustvo",
+    exp_desc: "Enterprise projekti, stvaran uticaj, produkcijski sistemi koje koriste hiljade korisnika.",
+    e1_role: "Full Stack Java Developer",
+    e1_project: "▸ Sistem za upravljanje poslovnim partnerima i ugovorima",
+    e1_period: "Feb 2023 → danas",
+    e1_b1: "Razvio sam full-stack veb aplikaciju za upravljanje poslovnim partnerima i ugovorima — kreiranje ugovora, odobravanje i praćenje životnog ciklusa.",
+    e1_b2: "Dizajnirao sam skalabilni Spring Boot backend sa sigurnim REST API-jima za upravljanje partnerima, verzioniranje ugovora i automatizovane notifikacije.",
+    e1_b3: "Izgradio sam responsivan Angular frontend sa dinamičnom vizualizacijom podataka i besprekорnom integracijom sa backendom.",
+    e1_b4: "Integrisao Hibernate ORM sa PostgreSQL-om za optimizovane upite i složene veze između entiteta.",
+    e1_b5: "Poboljšao kvalitet koda kroz JUnit i Mockito unit i integracione testove.",
+    e1_b6: "Kontejnerizovao aplikaciju sa Dockerom i uspostavio CI/CD pipeline koji je značajno smanjio vreme deploymenta.",
+    e2_role: "Full Stack Software Developer",
+    e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
+    e2_period: "Apr 2021 → Feb 2023",
+    e2_b1: "Izgradio sigurnu, veliku veb aplikaciju unutar IAM ekosistema Volkswagen Grupe za autentifikaciju i autorizaciju u korporativnim sistemima.",
+    e2_b2: "Razvio dinamičke UI komponente koristeći Java Server Faces (JSF), Facelets i managed beans prema VW korporativnim standardima.",
+    e2_b3: "Razvio modularne Spring Boot backend servise sa integracijom u enterprise identity infrastrukturu.",
+    e2_b4: "Optimizovao operacije baze podataka i efikasnost upita, poboljšavajući responsivnost i skalabilnost aplikacije.",
+    e2_b5: "Napisao sveobuhvatnu tehničku dokumentaciju o backend arhitekturi i modelima podataka.",
+    srv_label: "usluge", srv_title: "Šta nudim",
+    srv_desc: "Od pojedinačnih funkcionalnosti do kompletnih aplikacija — evo kako mogu pomoći vašem projektu.",
+    s1_title: "Backend razvoj",
+    s1_desc: "Robusni REST API-ji i mikroservisi u Java Spring Boot. Čista arhitektura, upravljanje greškama, sigurnost i dokumentacija — izgrađeno da traje.",
+    s2_title: "Frontend razvoj",
+    s2_desc: "Responsivni, performantni SPAs u Angular-u ili React-u. Komponentni, dobro strukturirani UI koji savršeno komunicira sa backend servisima.",
+    s3_title: "Dizajn i optimizacija baze podataka",
+    s3_desc: "Dizajn šeme, strategije migracije i optimizacija upita za PostgreSQL, MySQL i MongoDB. Vaš data layer spreman za rast od prvog dana.",
+    s4_title: "CI/CD & kontejnerizacija",
+    s4_desc: "Dockerizacija aplikacije i postavljanje automatizovanih pipeline-a za build, test i deployment. Pouzdana isporuka bez ručnog napora.",
+    s5_title: "Code review & refaktorisanje",
+    s5_desc: "Svež pogled na vaš kod. Pronalazim bottlenecke, sigurnosne rupe i tech debt — i otklanjam ih jasnim, održivim rešenjima.",
+    s6_title: "Tehnička dokumentacija",
+    s6_desc: "Arhitekturni dokumenti, API reference, onboarding vodiči i deployment runbookovi. Vaš tim zaslužuje da razume šta je izgrađeno i zašto.",
+    edu_label: "obrazovanje", edu_title: "Akademsko obrazovanje",
+    edu1_period: "2016 → danas (u toku)",
+    edu1_degree: "BSc. Software & Information Engineering",
+    edu2_degree: "Matura (ekvivalent mature)",
+    ct_label: "kontakt", ct_title: "Hajde da radimo zajedno",
+    cta_title: "Spreman za pokretanje projekta?",
+    cta_text: "Trebate li novi API, kompletan veb projekat ili nekoga ko će spasiti postojeći kod — dostupan sam za frilenserske ugovore i rado ću razgovarati o vašim zahtevima.",
+    cta_btn: "✉ Pošalji poruku",
+    loc_label: "lokacija", loc_val: "Beč, Austrija",
+    footer_text: "© 2025 Maljoki Mehmed · Izgrađeno s pažnjom, isporučeno s preciznošću.",
+  }
+};
+
+/* ═══════════════════════════════════════════
+   LANGUAGE ENGINE
+═══════════════════════════════════════════ */
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = lang;
+
+  const t = translations[lang];
+
+  // Text nodes
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.textContent = t[key];
   });
+
+  // HTML nodes (with markup)
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Language buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+  });
+}
+
+// Init language
+setLang(currentLang);
+
+/* ═══════════════════════════════════════════
+   THEME ENGINE
+═══════════════════════════════════════════ */
+let isDark = localStorage.getItem('theme') !== 'light';
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  document.getElementById('themeToggle').textContent = isDark ? '☾' : '☀';
+}
+
+document.getElementById('themeToggle').addEventListener('click', () => {
+  isDark = !isDark;
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  applyTheme();
+});
+
+// Respect system preference on first visit
+if (!localStorage.getItem('theme')) {
+  isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+applyTheme();
+
+/* ═══════════════════════════════════════════
+   CV DOWNLOAD (Print)
+═══════════════════════════════════════════ */
+function downloadCV() {
+  const t = translations[currentLang];
+  const printWindow = window.open('', '_blank');
+  const html = `<!DOCTYPE html>
+<html lang="${currentLang}">
+<head>
+<meta charset="UTF-8"/>
+<title>Mehmed Maljoki — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;font-size:10.5px;line-height:1.5;color:#111;background:#fff;padding:2cm 2.2cm;}
+  h1{font-size:22px;font-weight:800;letter-spacing:-0.03em;margin-bottom:2px;}
+  .subtitle{font-size:11px;color:#555;margin-bottom:4px;}
+  .tagline{font-size:10px;color:#bf5c38;font-weight:600;margin-bottom:10px;}
+  .contact-row{display:flex;flex-wrap:wrap;gap:12px;font-size:9.5px;color:#444;border-top:2px solid #bf5c38;border-bottom:1px solid #ddd;padding:6px 0;margin-bottom:14px;}
+  .contact-row span{display:flex;align-items:center;gap:4px;}
+  h2{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#bf5c38;border-bottom:1px solid #eee;padding-bottom:3px;margin:14px 0 8px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;}
+  .job{margin-bottom:12px;padding-left:8px;border-left:2px solid #bf5c38;}
+  .job-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px;}
+  .job-role{font-weight:700;font-size:10.5px;}
+  .job-period{font-size:9px;color:#bf5c38;background:#fdf0ec;border:1px solid #f0c0a0;padding:1px 6px;border-radius:10px;}
+  .job-company{font-weight:600;color:#bf5c38;font-size:9.5px;}
+  .job-project{color:#888;font-size:8.5px;font-family:monospace;margin-bottom:4px;}
+  .tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:5px;}
+  .tag{font-size:7.5px;font-family:monospace;padding:1px 5px;background:#e8eef8;border:1px solid #b8cce8;color:#1d4ed8;border-radius:3px;}
+  ul{list-style:none;padding:0;}
+  ul li{padding-left:10px;position:relative;color:#333;font-size:9.5px;margin-bottom:2px;line-height:1.5;}
+  ul li::before{content:'▸';position:absolute;left:0;color:#bf5c38;}
+  .skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+  .skill-item{background:#f8f8f8;border:1px solid #eee;border-radius:4px;padding:6px 8px;}
+  .skill-name{font-weight:700;font-size:9px;margin-bottom:3px;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:2px;}
+  .stag{font-size:7.5px;font-family:monospace;padding:1px 4px;background:#eee;border-radius:2px;color:#444;}
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .edu-item{background:#f8f8f8;border:1px solid #eee;border-radius:4px;padding:8px 10px;}
+  .edu-period{font-size:8.5px;color:#bf5c38;margin-bottom:2px;}
+  .edu-degree{font-weight:700;font-size:9.5px;}
+  .edu-school{color:#555;font-size:9px;}
+  @media print{body{padding:1.2cm 1.5cm;}@page{margin:0;}}
+</style>
+</head>
+<body>
+<h1>Maljoki Mehmed</h1>
+<div class="subtitle">Full Stack Software Developer</div>
+<div class="tagline">☕ Java Spring Boot · 🌐 Angular / React · 🐳 Docker · 🔐 OAuth / IAM</div>
+<div class="contact-row">
+  <span>✉ maljoki.mehmed@gmail.com</span>
+  <span>📞 +43 677 623 07555</span>
+  <span>💼 linkedin.com/in/mehmed-maljoki</span>
+  <span>🐙 github.com/mehmed-maljoki</span>
+  <span>📍 ${t.loc_val}</span>
+</div>
+
+<h2>${t.exp_label.toUpperCase()}</h2>
+<div class="job">
+  <div class="job-head">
+    <div class="job-role">${t.e1_role}</div>
+    <div class="job-period">${t.e1_period}</div>
+  </div>
+  <div class="job-company">Porsche Informatik GmbH</div>
+  <div class="job-project">${t.e1_project}</div>
+  <div class="tags">
+    ${['Java Spring Boot','Angular','Hibernate','PostgreSQL','Docker','CI/CD','REST APIs'].map(x=>`<span class="tag">${x}</span>`).join('')}
+  </div>
+  <ul>
+    ${[t.e1_b1,t.e1_b2,t.e1_b3,t.e1_b4,t.e1_b5,t.e1_b6].map(b=>`<li>${b}</li>`).join('')}
+  </ul>
+</div>
+<div class="job">
+  <div class="job-head">
+    <div class="job-role">${t.e2_role}</div>
+    <div class="job-period">${t.e2_period}</div>
+  </div>
+  <div class="job-company">Porsche Informatik GmbH</div>
+  <div class="job-project">${t.e2_project}</div>
+  <div class="tags">
+    ${['Java Spring Boot','React / JSF','Hibernate','MySQL','Docker','CI/CD','OAuth / IAM'].map(x=>`<span class="tag">${x}</span>`).join('')}
+  </div>
+  <ul>
+    ${[t.e2_b1,t.e2_b2,t.e2_b3,t.e2_b4,t.e2_b5].map(b=>`<li>${b}</li>`).join('')}
+  </ul>
+</div>
+
+<h2>${t.skills_label.toUpperCase()}</h2>
+<div class="skill-grid">
+  <div class="skill-item"><div class="skill-name">☕ Backend — Java</div><div class="skill-tags">${['Spring Boot','Hibernate ORM','Maven','JSF','JUnit','Mockito','REST APIs'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🌐 Frontend</div><div class="skill-tags">${['Angular','React','TypeScript','HTML5','CSS3','JavaScript'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🗄️ Databases</div><div class="skill-tags">${['PostgreSQL','MySQL','MongoDB','SQL'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🐳 DevOps</div><div class="skill-tags">${['Docker','CI/CD','Linux','Git','Shell'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🔬 Other</div><div class="skill-tags">${['C','Prolog','Haskell'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🤖 Interests</div><div class="skill-tags">${['AI / ML','Compilers','System Design'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+</div>
+
+<h2>${t.edu_label.toUpperCase()}</h2>
+<div class="edu-grid">
+  <div class="edu-item">
+    <div class="edu-period">${t.edu1_period}</div>
+    <div class="edu-degree">${t.edu1_degree}</div>
+    <div class="edu-school">Technical University of Vienna (TU Wien)</div>
+  </div>
+  <div class="edu-item">
+    <div class="edu-period">2011 — 2016</div>
+    <div class="edu-degree">${t.edu2_degree}</div>
+    <div class="edu-school">HTL Mödling — Higher Technical College</div>
+  </div>
+</div>
+</body>
+</html>`;
+
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.onload = () => {
+    setTimeout(() => { printWindow.print(); }, 500);
+  };
+}
+
+/* ═══════════════════════════════════════════
+   SCROLL PROGRESS
+═══════════════════════════════════════════ */
+const progressBar = document.getElementById('progress-bar');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  progressBar.style.width = (total > 0 ? (scrolled / total) * 100 : 0) + '%';
+}, { passive: true });
+
+/* ═══════════════════════════════════════════
+   NAV ACTIVE LINK + SCROLL HIGHLIGHT
+═══════════════════════════════════════════ */
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 90) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}, { passive: true });
+
+/* ═══════════════════════════════════════════
+   FADE-IN OBSERVER
+═══════════════════════════════════════════ */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 70);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+/* ═══════════════════════════════════════════
+   MOBILE MENU
+═══════════════════════════════════════════ */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+function closeMobile() {
+  mobileMenu.classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════
+   NAV SHADOW ON SCROLL
+═══════════════════════════════════════════ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').style.boxShadow =
+    window.scrollY > 10 ? '0 1px 24px rgba(0,0,0,0.15)' : 'none';
+}, { passive: true });
 </script>
 </body>
 </html>
