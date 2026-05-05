@@ -29,3 +29,4 @@ Full Stack Software Developer with 3+ years of enterprise experience, based in V
 - 💼 [LinkedIn](https://www.linkedin.com/in/mehmed-maljoki)
 - 🐙 [GitHub](https://github.com/mehmedmaljoki)
 - 📍 Baden / Vienna, Austria
+
