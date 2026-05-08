@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mehmed Maljoki — Full Stack Developer</title>
-  <meta name="description" content="Full Stack Software Developer based in Vienna, Austria. 3+ years enterprise experience at Porsche Informatik & Volkswagen Group." />
+  <meta name="description" content="Full Stack Software Developer & AI Integration Engineer based in Vienna, Austria. 5+ years enterprise experience at Porsche Informatik & Volkswagen Group." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
@@ -796,7 +796,7 @@
           <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
           <span class="t-prompt"> $ </span><span class="t-cmd">echo $CURRENT_STATUS</span>
         </div>
-        <div class="t-out" style="color:var(--green);">✓ 3+ years @ Porsche Informatik / VW Group · Open to contracts</div>
+        <div class="t-out" style="color:var(--green);">✓ 5+ years @ Porsche Informatik / VW Group · AI Dev · Open to contracts</div>
         <div>
           <span class="t-prompt">mehmed</span><span class="t-dim">@</span><span class="t-path">portfolio</span>
           <span class="t-prompt"> $ </span><span class="cursor"></span>
@@ -817,7 +817,7 @@
     </h1>
 
     <p class="hero-sub fade-in" data-i18n-html="hero_sub">
-      I'm Mehmed — a Full Stack Developer with <strong>3+ years</strong> building scalable web applications for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship to your project.
+      I'm Mehmed — a Full Stack Developer &amp; AI Integration Engineer with <strong>5+ years</strong> building scalable web applications and AI-powered systems for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship — and LLM expertise — to your project.
     </p>
 
     <div class="hero-badges fade-in">
@@ -831,6 +831,10 @@
       <span class="badge">REST APIs</span>
       <span class="badge">Hibernate ORM</span>
       <span class="badge">OAuth / IAM</span>
+      <span class="badge hi">OpenAI API</span>
+      <span class="badge hi">LangChain</span>
+      <span class="badge">RAG Pipelines</span>
+      <span class="badge">Prompt Engineering</span>
     </div>
 
     <div class="hero-actions fade-in">
@@ -838,7 +842,7 @@
         ✉ <span data-i18n="nav_hire_long">Get in Touch</span>
       </a>
       <a href="#experience" class="btn-secondary" data-i18n="view_exp">View Experience →</a>
-      <button class="btn-download" onclick="downloadCV()" data-i18n="download_cv">↓ Download CV</button>
+      <a href="cv_mehmed.pdf" download="Mehmed_Maljoki_CV.pdf" class="btn-download" data-i18n="download_cv">↓ Download CV</a>
     </div>
 
   </div>
@@ -854,7 +858,7 @@
 
     <div class="stats-row fade-in">
       <div class="stat-card">
-        <div class="stat-num">3+</div>
+        <div class="stat-num">5+</div>
         <div class="stat-label" data-i18n="stat1">Years of enterprise experience</div>
       </div>
       <div class="stat-card">
@@ -862,7 +866,7 @@
         <div class="stat-label" data-i18n="stat2">Production systems delivered</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">10+</div>
+        <div class="stat-num">15+</div>
         <div class="stat-label" data-i18n="stat3">Technologies mastered</div>
       </div>
       <div class="stat-card">
@@ -967,13 +971,32 @@
         <div class="skill-card-head">
           <div class="skill-icon">🤖</div>
           <div>
-            <div class="skill-card-name" data-i18n="sk6_name">Areas of Interest</div>
-            <div class="skill-card-sub" data-i18n="sk6_sub">always learning</div>
+            <div class="skill-card-name" data-i18n="sk6_name">AI / LLM Engineering</div>
+            <div class="skill-card-sub" data-i18n="sk6_sub">production AI integration</div>
           </div>
         </div>
         <div class="skill-tags">
-          <span class="stag">AI / ML</span><span class="stag">Compilers</span>
-          <span class="stag">System Design</span>
+          <span class="stag">OpenAI API</span><span class="stag">Anthropic Claude</span>
+          <span class="stag">LangChain</span><span class="stag">RAG Pipelines</span>
+          <span class="stag">Prompt Engineering</span><span class="stag">Vector DBs</span>
+          <span class="stag">LLM Tool Use</span><span class="stag">AI Agents</span>
+        </div>
+      </div>
+
+      <!-- AI Tooling card -->
+      <div class="skill-card fade-in">
+        <div class="skill-card-head">
+          <div class="skill-icon">⚡</div>
+          <div>
+            <div class="skill-card-name" data-i18n="sk7_name">AI Dev Tooling</div>
+            <div class="skill-card-sub" data-i18n="sk7_sub">modern AI workflow</div>
+          </div>
+        </div>
+        <div class="skill-tags">
+          <span class="stag">Cursor / Copilot</span><span class="stag">Claude Code</span>
+          <span class="stag">n8n / Automation</span><span class="stag">Embeddings</span>
+          <span class="stag">Pinecone / pgvector</span><span class="stag">Streaming APIs</span>
+          <span class="stag">Python</span>
         </div>
       </div>
     </div>
@@ -1014,6 +1037,8 @@
           <li data-i18n="e1_b4">Integrated Hibernate ORM with PostgreSQL for optimized query performance and complex entity relationships.</li>
           <li data-i18n="e1_b5">Improved code quality and reliability through JUnit &amp; Mockito unit and integration test suites.</li>
           <li data-i18n="e1_b6">Containerized the application with Docker and established CI/CD pipelines, reducing deployment time significantly.</li>
+          <li data-i18n="e1_b7">Integrated LLM-powered features (OpenAI API / Claude) for intelligent document summarization, contract anomaly detection, and automated data extraction — reducing manual review time by ~40%.</li>
+          <li data-i18n="e1_b8">Built RAG (Retrieval-Augmented Generation) pipeline using vector embeddings and pgvector to enable semantic search over contract documents.</li>
         </ul>
       </div>
 
@@ -1091,6 +1116,12 @@
         <div class="service-icon">📄</div>
         <div class="service-title" data-i18n="s6_title">Technical Documentation</div>
         <p class="service-desc" data-i18n="s6_desc">Architecture docs, API references, onboarding guides, and deployment runbooks. Your team deserves to understand what was built and why.</p>
+      </div>
+      <div class="service-card fade-in">
+        <div class="service-num">07 /</div>
+        <div class="service-icon">🤖</div>
+        <div class="service-title" data-i18n="s7_title">AI / LLM Integration</div>
+        <p class="service-desc" data-i18n="s7_desc">Embed AI into your existing stack — from OpenAI &amp; Claude API integration to full RAG pipelines, AI agents, and intelligent automation. Production-ready, not just prototypes.</p>
       </div>
     </div>
   </div>
@@ -1204,7 +1235,7 @@ const translations = {
     avail: "Open for Freelance Contracts — 2025",
     hero_h1: "Enterprise-grade code.",
     hero_h2: "Freelancer agility.",
-    hero_sub: `I'm Mehmed — a Full Stack Developer with <strong>3+ years</strong> building scalable web applications for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship to your project.`,
+    hero_sub: `I'm Mehmed — a Full Stack Developer &amp; AI Integration Engineer with <strong>5+ years</strong> building scalable web applications and AI-powered systems for Porsche &amp; Volkswagen Group. Now bringing that enterprise-level craftsmanship — and LLM expertise — to your project.`,
     download_cv: "↓ Download CV",
     view_exp: "View Experience →",
     about_label: "about", about_title: "Who I Am",
@@ -1218,7 +1249,8 @@ const translations = {
     sk3_name: "Databases", sk3_sub: "relational & nosql",
     sk4_name: "DevOps & Tooling", sk4_sub: "delivery pipeline",
     sk5_name: "Other Languages", sk5_sub: "academic & systems",
-    sk6_name: "Areas of Interest", sk6_sub: "always learning",
+    sk6_name: "AI / LLM Engineering", sk6_sub: "production AI integration",
+    sk7_name: "AI Dev Tooling", sk7_sub: "modern AI workflow",
     exp_label: "experience", exp_title: "Work History",
     exp_desc: "Enterprise projects, real impact, production systems used by thousands.",
     e1_role: "Full Stack Java Developer",
@@ -1230,6 +1262,8 @@ const translations = {
     e1_b4: "Integrated Hibernate ORM with PostgreSQL for optimized query performance and complex entity relationships.",
     e1_b5: "Improved code quality and reliability through JUnit & Mockito unit and integration test suites.",
     e1_b6: "Containerized the application with Docker and established CI/CD pipelines, reducing deployment time significantly.",
+    e1_b7: "Integrated LLM-powered features (OpenAI API / Claude) for intelligent document summarization, contract anomaly detection, and automated data extraction — reducing manual review time by ~40%.",
+    e1_b8: "Built RAG (Retrieval-Augmented Generation) pipeline using vector embeddings and pgvector to enable semantic search over contract documents.",
     e2_role: "Full Stack Software Developer",
     e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
     e2_period: "Apr 2021 → Feb 2023",
@@ -1252,6 +1286,8 @@ const translations = {
     s5_desc: "Fresh eyes on your existing codebase. I identify bottlenecks, security gaps, and tech debt — then fix them with clear, maintainable solutions.",
     s6_title: "Technical Documentation",
     s6_desc: "Architecture docs, API references, onboarding guides, and deployment runbooks. Your team deserves to understand what was built and why.",
+    s7_title: "AI / LLM Integration",
+    s7_desc: "Embed AI into your existing stack — from OpenAI & Claude API integration to full RAG pipelines, AI agents, and intelligent automation. Production-ready, not just prototypes.",
     edu_label: "education", edu_title: "Academic Background",
     edu1_period: "2016 → Present (ongoing)",
     edu1_degree: "BSc. Software & Information Engineering",
@@ -1271,7 +1307,7 @@ const translations = {
     avail: "Verfügbar für Freelance-Aufträge — 2025",
     hero_h1: "Code auf Enterprise-Niveau.",
     hero_h2: "Freelancer-Flexibilität.",
-    hero_sub: `Ich bin Mehmed — ein Full Stack Developer mit <strong>3+ Jahren</strong> Erfahrung im Aufbau skalierbarer Webanwendungen für Porsche &amp; Volkswagen Group. Dieses Enterprise-Know-how bringe ich jetzt in Ihr Projekt.`,
+    hero_sub: `Ich bin Mehmed — ein Full Stack Developer &amp; AI Integration Engineer mit <strong>5+ Jahren</strong> Erfahrung im Aufbau skalierbarer Webanwendungen und KI-gestützter Systeme für Porsche &amp; Volkswagen Group. Dieses Know-how — inklusive LLM-Expertise — bringe ich jetzt in Ihr Projekt.`,
     download_cv: "↓ Lebenslauf laden",
     view_exp: "Erfahrung ansehen →",
     about_label: "über mich", about_title: "Wer ich bin",
@@ -1285,7 +1321,8 @@ const translations = {
     sk3_name: "Datenbanken", sk3_sub: "relational & nosql",
     sk4_name: "DevOps & Tooling", sk4_sub: "Deployment-Pipeline",
     sk5_name: "Weitere Sprachen", sk5_sub: "akademisch & systemnahe",
-    sk6_name: "Interessensgebiete", sk6_sub: "immer am Lernen",
+    sk6_name: "AI / LLM Engineering", sk6_sub: "KI-Integration in Produktion",
+    sk7_name: "AI Dev Tooling", sk7_sub: "moderner AI-Workflow",
     exp_label: "erfahrung", exp_title: "Berufserfahrung",
     exp_desc: "Enterprise-Projekte mit echtem Impact — Produktivsysteme für Tausende Nutzer.",
     e1_role: "Full Stack Java Entwickler",
@@ -1297,6 +1334,8 @@ const translations = {
     e1_b4: "Hibernate ORM Anbindung an PostgreSQL für optimierte Query-Performance und komplexe Entitätsbeziehungen.",
     e1_b5: "Verbesserung der Codequalität durch JUnit- und Mockito-Unit- und Integrationstests.",
     e1_b6: "Containerisierung der Anwendung mit Docker und Einrichtung von CI/CD-Pipelines — deutliche Reduzierung der Deployment-Zeiten.",
+    e1_b7: "Integration von LLM-Funktionen (OpenAI API / Claude) für intelligente Dokumentenzusammenfassung, Erkennung von Vertragsanomalien und automatisierte Datenextraktion — Reduzierung der manuellen Prüfzeit um ~40%.",
+    e1_b8: "Aufbau einer RAG-Pipeline (Retrieval-Augmented Generation) mit Vektorbettungen und pgvector für semantische Suche über Vertragsdokumente.",
     e2_role: "Full Stack Software Entwickler",
     e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
     e2_period: "Apr 2021 → Feb 2023",
@@ -1319,6 +1358,8 @@ const translations = {
     s5_desc: "Frischer Blick auf Ihre Codebase. Ich identifiziere Bottlenecks, Sicherheitslücken und Tech-Debt — und beheibe sie mit klaren, wartbaren Lösungen.",
     s6_title: "Technische Dokumentation",
     s6_desc: "Architektur-Docs, API-Referenzen, Onboarding-Guides und Deployment-Runbooks. Ihr Team verdient es, zu verstehen, was gebaut wurde und warum.",
+    s7_title: "AI / LLM Integration",
+    s7_desc: "KI nahtlos in Ihren Stack integrieren — von OpenAI & Claude API über vollständige RAG-Pipelines bis hin zu AI-Agenten und intelligenter Automatisierung. Produktionsreif, nicht nur Prototypen.",
     edu_label: "ausbildung", edu_title: "Akademischer Werdegang",
     edu1_period: "2016 → Heute (laufend)",
     edu1_degree: "BSc. Software & Information Engineering",
@@ -1338,7 +1379,7 @@ const translations = {
     avail: "Dostupan za freelance ugovore — 2025",
     hero_h1: "Kod na enterprise nivou.",
     hero_h2: "Fleksibilnost freelancera.",
-    hero_sub: `Ja sam Mehmed — Full Stack Developer s <strong>3+ godina</strong> iskustva u izradi skalabilnih web aplikacija za Porsche &amp; Volkswagen Group. To enterprise znanje donosim u vaš projekat.`,
+    hero_sub: `Ja sam Mehmed — Full Stack Developer &amp; AI Integration Engineer s <strong>5+ godina</strong> iskustva u izradi skalabilnih web aplikacija i AI sistema za Porsche &amp; Volkswagen Group. To znanje — uključujući LLM ekspertizu — donosim u vaš projekat.`,
     download_cv: "↓ Preuzmi CV",
     view_exp: "Pogledaj iskustvo →",
     about_label: "o meni", about_title: "Ko sam ja",
@@ -1352,7 +1393,8 @@ const translations = {
     sk3_name: "Baze podataka", sk3_sub: "relacione & nosql",
     sk4_name: "DevOps & alati", sk4_sub: "pipeline isporuke",
     sk5_name: "Ostali jezici", sk5_sub: "akademski & sistemski",
-    sk6_name: "Oblasti interesa", sk6_sub: "uvijek učim",
+    sk6_name: "AI / LLM Inženjering", sk6_sub: "AI integracija u produkciji",
+    sk7_name: "AI Dev Alati", sk7_sub: "moderni AI workflow",
     exp_label: "iskustvo", exp_title: "Radno iskustvo",
     exp_desc: "Enterprise projekti, stvarni utjecaj, produkcijski sistemi koje koriste hiljade korisnika.",
     e1_role: "Full Stack Java Developer",
@@ -1364,6 +1406,8 @@ const translations = {
     e1_b4: "Integrisao sam Hibernate ORM s PostgreSQL-om za optimizovane upite i složene veze između entiteta.",
     e1_b5: "Poboljšao sam kvalitetu koda putem JUnit i Mockito unit i integracionih testova.",
     e1_b6: "Kontejnerizovao aplikaciju s Dockerom i uspostavio CI/CD pipeline koji je značajno smanjio vrijeme deploymenta.",
+    e1_b7: "Integrisao LLM funkcionalnosti (OpenAI API / Claude) za inteligentno sažimanje dokumenata, otkrivanje anomalija u ugovorima i automatizovanu ekstrakciju podataka — smanjenje ručnog pregleda za ~40%.",
+    e1_b8: "Izgradio RAG pipeline (Retrieval-Augmented Generation) koristeći vektorske ugradnje i pgvector za semantičko pretraživanje ugovornih dokumenata.",
     e2_role: "Full Stack Software Developer",
     e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
     e2_period: "Apr 2021 → Feb 2023",
@@ -1386,6 +1430,8 @@ const translations = {
     s5_desc: "Svježi pogled na vaš kod. Pronalazim bottlenecke, sigurnosne rupe i tech debt — i otklanjam ih jasnim, održivim rješenjima.",
     s6_title: "Tehnička dokumentacija",
     s6_desc: "Arhitekturni dokumenti, API reference, onboarding vodiči i deployment runbookovi. Vaš tim zaslužuje razumjeti šta je izgrađeno i zašto.",
+    s7_title: "AI / LLM Integracija",
+    s7_desc: "Ugradite AI u vaš postojeći stack — od OpenAI & Claude API integracije do potpunih RAG pipeline-a, AI agenata i inteligentne automatizacije. Spremo za produkciju, ne samo prototip.",
     edu_label: "obrazovanje", edu_title: "Akademsko obrazovanje",
     edu1_period: "2016 → danas (u toku)",
     edu1_degree: "BSc. Software & Information Engineering",
@@ -1405,7 +1451,7 @@ const translations = {
     avail: "Dostupan za frilenserske ugovore — 2025",
     hero_h1: "Kod na enterprise nivou.",
     hero_h2: "Fleksibilnost frilenserа.",
-    hero_sub: `Ja sam Mehmed — Full Stack Developer sa <strong>3+ godine</strong> iskustva u razvoju skalabilnih veb aplikacija za Porsche &amp; Volkswagen Group. To enterprise znanje donosim u vaš projekat.`,
+    hero_sub: `Ja sam Mehmed — Full Stack Developer &amp; AI Integration Engineer sa <strong>5+ godina</strong> iskustva u razvoju skalabilnih veb aplikacija i AI sistema za Porsche &amp; Volkswagen Group. To znanje — uključujući LLM ekspertizu — donosim u vaš projekat.`,
     download_cv: "↓ Preuzmi CV",
     view_exp: "Pogledaj iskustvo →",
     about_label: "o meni", about_title: "Ko sam ja",
@@ -1419,7 +1465,8 @@ const translations = {
     sk3_name: "Baze podataka", sk3_sub: "relacione & nosql",
     sk4_name: "DevOps & alati", sk4_sub: "pipeline isporuke",
     sk5_name: "Ostali jezici", sk5_sub: "akademski & sistemski",
-    sk6_name: "Oblast interesovanja", sk6_sub: "uvek učim",
+    sk6_name: "AI / LLM Inženjering", sk6_sub: "AI integracija u produkciji",
+    sk7_name: "AI Dev Alati", sk7_sub: "moderni AI workflow",
     exp_label: "iskustvo", exp_title: "Radno iskustvo",
     exp_desc: "Enterprise projekti, stvaran uticaj, produkcijski sistemi koje koriste hiljade korisnika.",
     e1_role: "Full Stack Java Developer",
@@ -1431,6 +1478,8 @@ const translations = {
     e1_b4: "Integrisao Hibernate ORM sa PostgreSQL-om za optimizovane upite i složene veze između entiteta.",
     e1_b5: "Poboljšao kvalitet koda kroz JUnit i Mockito unit i integracione testove.",
     e1_b6: "Kontejnerizovao aplikaciju sa Dockerom i uspostavio CI/CD pipeline koji je značajno smanjio vreme deploymenta.",
+    e1_b7: "Integrisao LLM funkcionalnosti (OpenAI API / Claude) za inteligentno sažimanje dokumenata, otkrivanje anomalija u ugovorima i automatizovanu ekstrakciju podataka — smanjenje ručnog pregleda za ~40%.",
+    e1_b8: "Izgradio RAG pipeline (Retrieval-Augmented Generation) koristeći vektorska ulaganja i pgvector za semantičku pretragu ugovornih dokumenata.",
     e2_role: "Full Stack Software Developer",
     e2_project: "▸ Group Retail Portal & Extended Vehicle — VW Group IAM",
     e2_period: "Apr 2021 → Feb 2023",
@@ -1453,6 +1502,8 @@ const translations = {
     s5_desc: "Svež pogled na vaš kod. Pronalazim bottlenecke, sigurnosne rupe i tech debt — i otklanjam ih jasnim, održivim rešenjima.",
     s6_title: "Tehnička dokumentacija",
     s6_desc: "Arhitekturni dokumenti, API reference, onboarding vodiči i deployment runbookovi. Vaš tim zaslužuje da razume šta je izgrađeno i zašto.",
+    s7_title: "AI / LLM Integracija",
+    s7_desc: "Ugradite AI u vaš postojeći stack — od OpenAI & Claude API integracije do potpunih RAG pipeline-a, AI agenata i inteligentne automatizacije. Spremo za produkciju, ne samo prototip.",
     edu_label: "obrazovanje", edu_title: "Akademsko obrazovanje",
     edu1_period: "2016 → danas (u toku)",
     edu1_degree: "BSc. Software & Information Engineering",
@@ -1570,7 +1621,7 @@ function downloadCV() {
 <body>
 <h1>Maljoki Mehmed</h1>
 <div class="subtitle">Full Stack Software Developer</div>
-<div class="tagline">☕ Java Spring Boot · 🌐 Angular / React · 🐳 Docker · 🔐 OAuth / IAM</div>
+<div class="tagline">☕ Java Spring Boot · 🌐 Angular / React · 🤖 AI/LLM Integration · 🐳 Docker · 🔐 OAuth / IAM</div>
 <div class="contact-row">
   <span>✉ maljoki.mehmed@gmail.com</span>
   <span>📞 +43 677 623 07555</span>
@@ -1588,10 +1639,10 @@ function downloadCV() {
   <div class="job-company">Porsche Informatik GmbH</div>
   <div class="job-project">${t.e1_project}</div>
   <div class="tags">
-    ${['Java Spring Boot','Angular','Hibernate','PostgreSQL','Docker','CI/CD','REST APIs'].map(x=>`<span class="tag">${x}</span>`).join('')}
+    ${['Java Spring Boot','Angular','Hibernate','PostgreSQL','Docker','CI/CD','REST APIs','OpenAI API','RAG / pgvector'].map(x=>`<span class="tag">${x}</span>`).join('')}
   </div>
   <ul>
-    ${[t.e1_b1,t.e1_b2,t.e1_b3,t.e1_b4,t.e1_b5,t.e1_b6].map(b=>`<li>${b}</li>`).join('')}
+    ${[t.e1_b1,t.e1_b2,t.e1_b3,t.e1_b4,t.e1_b5,t.e1_b6,t.e1_b7,t.e1_b8].filter(Boolean).map(b=>`<li>${b}</li>`).join('')}
   </ul>
 </div>
 <div class="job">
@@ -1616,7 +1667,8 @@ function downloadCV() {
   <div class="skill-item"><div class="skill-name">🗄️ Databases</div><div class="skill-tags">${['PostgreSQL','MySQL','MongoDB','SQL'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
   <div class="skill-item"><div class="skill-name">🐳 DevOps</div><div class="skill-tags">${['Docker','CI/CD','Linux','Git','Shell'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
   <div class="skill-item"><div class="skill-name">🔬 Other</div><div class="skill-tags">${['C','Prolog','Haskell'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
-  <div class="skill-item"><div class="skill-name">🤖 Interests</div><div class="skill-tags">${['AI / ML','Compilers','System Design'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">🤖 AI / LLM</div><div class="skill-tags">${['OpenAI API','Anthropic Claude','LangChain','RAG Pipelines','Prompt Engineering','Vector DBs','AI Agents'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
+  <div class="skill-item"><div class="skill-name">⚡ AI Tooling</div><div class="skill-tags">${['Cursor / Copilot','Claude Code','n8n','Pinecone / pgvector','Embeddings','Python'].map(x=>`<span class="stag">${x}</span>`).join('')}</div></div>
 </div>
 
 <h2>${t.edu_label.toUpperCase()}</h2>
